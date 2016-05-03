@@ -40,7 +40,6 @@ influxdb:
         - ./data/influxdb/db:/data/db
         - ./data/influxdb/meta:/data/meta
     ports:
-        - 8086:8086
         - 8083:8083
 
 grafana:
