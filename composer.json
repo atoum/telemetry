@@ -1,0 +1,31 @@
+{
+	"name": "atoum/telemetry",
+	"license": "BSD-3-Clause",
+	"authors":
+	[
+		{
+			"name": "jubianchi",
+			"email": "contact@jubianchi.fr"
+		}
+	],
+	"require": 
+	{
+		"php": "^7.0",
+		"influxdb/influxdb-php": "^1.3",
+		"silex/silex": "^1.3",
+		"monolog/monolog": "^1.19",
+		"chrisboulton/php-resque": "^1.2"
+	},
+	"require-dev":
+	{
+		"atoum/atoum": "^2.6",
+		"atoum/reports-extension": "*"
+	},
+	"autoload":
+	{
+		"psr-4":
+		{
+			"atoum\\telemetry\\": "src/"
+		}
+	}
+}

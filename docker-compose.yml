@@ -1,0 +1,74 @@
+telemetry:
+    build: .
+    environment:
+        ATOUM_TELEMETRY_REDIS_HOST: redis
+        ATOUM_TELEMETRY_REDIS_PORT: 6379
+        ATOUM_TELEMETRY_RESQUE_QUEUE: atoum
+        ATOUM_TELEMETRY_AUTH_TOKEN: 7ccd06f0-0fb8-11e6-829d-bfb8d154eebc
+    links:
+        - redis:redis
+        - worker:worker
+    volumes:
+        - .:/var/www
+    ports:
+        - 8087:80
+
+worker:
+    build: .
+    environment:
+        ATOUM_TELEMETRY_INFLUXDB_HOST: influxdb
+        ATOUM_TELEMETRY_INFLUXDB_PORT: 8086
+        ATOUM_TELEMETRY_INFLUXDB_DATABASE: atoum
+        ATOUM_TELEMETRY_REDIS_HOST: redis
+        ATOUM_TELEMETRY_REDIS_PORT: 6379
+        ATOUM_TELEMETRY_RESQUE_QUEUE: atoum
+    links:
+        - redis:redis
+        - influxdb:influxdb
+    volumes:
+        - .:/app
+    entrypoint: php
+    command: /app/bin/worker.php
+
+influxdb:
+    image: tutum/influxdb:latest
+    environment:
+        ADMIN_USER: admin
+        INFLUXDB_INIT_PWD: admin
+        PRE_CREATE_DB: atoum
+    volumes:
+        - ./data/influxdb/db:/data/db
+        - ./data/influxdb/meta:/data/meta
+    ports:
+        - 8086:8086
+        - 8083:8083
+        - 25826:25826/udp
+
+grafana:
+    image: grafana/grafana:latest
+    links:
+        - influxdb:influxdb
+    environment:
+        GF_SECURITY_ADMIN_USER: admin
+        GF_SECURITY_ADMIN_PASSWORD: admin
+        GF_SECURITY_SECRET_KEY: atoumRocks
+        GF_USERS_ALLOW_SIGN_UP: 'false'
+        GF_USERS_ALLOW_ORG_CREATE: 'true'
+        GF_AUTH_ANONYMOUS_ENABLED: 'true'
+        GF_AUTH_ANONYMOUS_ORG_NAME: atoum
+        GF_DASHBOARDS_JSON_ENABLED: 'true'
+        GF_DASHBOARDS_JSON_PATH: /opt/grafana
+    volumes_from:
+        - telemetry
+    volumes:
+        - ./data/grafana/lib:/var/lib/grafana
+        - ./data/grafana/log:/var/log/grafana
+    ports:
+        - 8088:3000
+
+redis:
+    image: redis:3-alpine
+    volumes:
+        - ./data/redis/lib:/data
+    ports:
+        - 8089:6379
