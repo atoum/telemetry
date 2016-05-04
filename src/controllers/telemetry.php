@@ -96,6 +96,8 @@ class telemetry
 	 *     )
 	 * )
 	 *
+	 * @param Request $request
+	 *
 	 * @throws BadRequestHttpException
 	 *
 	 * @return Response

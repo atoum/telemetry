@@ -91,6 +91,9 @@ class hook
 	 *     )
 	 * )
 	 *
+	 * @param string  $token
+	 * @param Request $request
+	 *
 	 * @throws AccessDeniedHttpException
 	 * @throws BadRequestHttpException
 	 *

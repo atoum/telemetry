@@ -2,6 +2,7 @@
 
 namespace atoum\telemetry;
 
+use atoum\telemetry\controllers\error;
 use atoum\telemetry\controllers\hook;
 use atoum\telemetry\controllers\telemetry;
 use atoum\telemetry\providers\influxdb;
@@ -55,6 +56,7 @@ class application extends Silex\Application
 	{
 		$this->post('/hook/{token}', new hook($this['auth_token'], $this['broker']));
 		$this->post('/', new telemetry($this['broker']));
+		$this->error(new error());
 
 		parent::run($request);
 	}
