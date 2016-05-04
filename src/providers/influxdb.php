@@ -22,7 +22,9 @@ class influxdb implements ServiceProviderInterface
 		$app['influxdb.client'] = $app->share(function (telemetry\application $app) {
 			return new InfluxDB\Client(
 				isset($app['influxdb.host']) ? $app['influxdb.host'] : 'localhost',
-				isset($app['influxdb.port']) ? $app['influxdb.port'] : 8086
+				isset($app['influxdb.port']) ? $app['influxdb.port'] : 8086,
+				isset($app['influxdb.username']) ? $app['influxdb.username'] : '',
+				isset($app['influxdb.password']) ? $app['influxdb.password'] : ''
 			);
 		});
 	}

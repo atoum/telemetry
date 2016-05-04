@@ -14,6 +14,8 @@ $app['monolog.logfile'] = 'php://stdout';
 $app['influxdb.host'] = getenv('ATOUM_TELEMETRY_INFLUXDB_HOST') ?: null;
 $app['influxdb.port'] = getenv('ATOUM_TELEMETRY_INFLUXDB_PORT') ?: null;
 $app['influxdb.database'] = getenv('ATOUM_TELEMETRY_INFLUXDB_DATABASE') ?: null;
+$app['influxdb.username'] = getenv('ATOUM_TELEMETRY_INFLUXDB_USERNAME') ?: null;
+$app['influxdb.password'] = getenv('ATOUM_TELEMETRY_INFLUXDB_PASSWORD') ?: null;
 
 $app['redis.host'] = getenv('ATOUM_TELEMETRY_REDIS_HOST') ?: null;
 $app['redis.port'] = getenv('ATOUM_TELEMETRY_REDIS_PORT') ?: null;

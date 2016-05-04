@@ -44,6 +44,8 @@ The telemtry platform is configured through environment variables:
 | `ATOUM_TELEMETRY_INFLUXDB_HOST`     | InfluxDB host name                     | `localhost` |     | X      |
 | `ATOUM_TELEMETRY_INFLUXDB_PORT`     | InfluxDB API port                      | `8086`      |     | X      |
 | `ATOUM_TELEMETRY_INFLUXDB_DATABASE` | InfluxDB database name                 | `atoum`     |     | X      |
+| `ATOUM_TELEMETRY_INFLUXDB_USERNAME` | InfluxDB username                      | `null`      |     | X      |
+| `ATOUM_TELEMETRY_INFLUXDB_PASSWORD` | InfluxDB password                      | `null`      |     | X      |
 | `ATOUM_TELEMETRY_REDIS_HOST`        | Redis host name                        | `localhost` | X   | X      |
 | `ATOUM_TELEMETRY_REDIS_PORT`        | Redis port                             | `6379`      | X   | X      |
 | `ATOUM_TELEMETRY_RESQUE_QUEUE`      | Resque queue name                      | `atoum`     | X   | X      |
@@ -79,4 +81,3 @@ There are also two routes to access the API documentation:
 * Means: Unit on "Assertions"
 * Top 5: Remove time filter
 * Top 5: Fix orderinf on "PHP versions"
-* InfluxDB: Add env. vars to authenticate against database

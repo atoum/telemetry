@@ -51,12 +51,18 @@ class influxdb extends atoum\test
 					->call('offsetGet')->withArguments('influxdb.port')->never
 					->call('offsetExists')->withArguments('influxdb.database')->once
 					->call('offsetGet')->withArguments('influxdb.database')->never
+					->call('offsetExists')->withArguments('influxdb.username')->once
+					->call('offsetGet')->withArguments('influxdb.username')->never
+					->call('offsetExists')->withArguments('influxdb.password')->once
+					->call('offsetGet')->withArguments('influxdb.password')->never
 					->call('offsetGet')->withArguments('influxdb.client')->once
 			->given($application = new \mock\atoum\telemetry\application())
 			->if(
 				$application['influxdb.host'] = $host = uniqid(),
 				$application['influxdb.port'] = $port = rand(1, 1024),
 				$application['influxdb.database'] = uniqid(),
+				$application['influxdb.username'] = uniqid(),
+				$application['influxdb.password'] = uniqid(),
 				$this->testedInstance->register($application)
 			)
 			->when($application['database'])
@@ -68,6 +74,10 @@ class influxdb extends atoum\test
 					->call('offsetGet')->withArguments('influxdb.port')->once
 					->call('offsetExists')->withArguments('influxdb.database')->once
 					->call('offsetGet')->withArguments('influxdb.database')->once
+					->call('offsetExists')->withArguments('influxdb.username')->once
+					->call('offsetGet')->withArguments('influxdb.username')->once
+					->call('offsetExists')->withArguments('influxdb.password')->once
+					->call('offsetGet')->withArguments('influxdb.password')->once
 					->call('offsetGet')->withArguments('influxdb.client')->once
 		;
 	}
