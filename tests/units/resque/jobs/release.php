@@ -27,7 +27,7 @@ class release extends atoum\test
 				$this->calling($database)->writePoints->doesNothing,
 				$release = [
 					'tag_name' => '1.0.0',
-					'created_at' => date('r')
+					'created_at' => date('c')
 				]
 			)
 			->if(
@@ -57,7 +57,7 @@ class release extends atoum\test
 					)->once
 			->given($release = [
 				'tag_name' => '2',
-				'created_at' => date('r')
+				'created_at' => date('c')
 			])
 			->if($this->testedInstance->args['release'] = $release)
 			->when($this->testedInstance->perform())
@@ -82,7 +82,7 @@ class release extends atoum\test
 					)->once
 			->given($release = [
 				'tag_name' => '2.1',
-				'created_at' => date('r')
+				'created_at' => date('c')
 			])
 			->if($this->testedInstance->args['release'] = $release)
 			->when($this->testedInstance->perform())

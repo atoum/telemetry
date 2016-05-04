@@ -67,6 +67,11 @@ The API exposes 2 useful routes:
 * `POST /` is used by the [telemetry report]() to push data to the platform
 * `POST /hook/{token}` is used by [Github's release webhook](https://developer.github.com/v3/activity/events/types/#releaseevent)
 
+There are also two routes to access the API documentation:
+
+* `GET /docs` to get the JSON definition of the API
+* `GET /swagger` to reach the Swagger UI
+
 ## TODO
 
 * Suites: Labels on legends
