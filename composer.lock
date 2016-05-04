@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "afa376a22718a56e87a7ee32976fe327",
-    "content-hash": "18ab3eb8cc4261649d7467209f64cf1a",
+    "hash": "a28e80abe3e1321724aee57acd321742",
+    "content-hash": "3d8adca718fc504fcdfd5c0b30688b8b",
     "packages": [
         {
             "name": "chrisboulton/php-resque",
@@ -405,56 +405,6 @@
                 "time series"
             ],
             "time": "2016-04-12 13:42:11"
-        },
-        {
-            "name": "jdesrosiers/silex-cors-provider",
-            "version": "v0.1.5",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/jdesrosiers/silex-cors-provider.git",
-                "reference": "06954050d4a031884c4a68a8c3efb7ec7910ebde"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/jdesrosiers/silex-cors-provider/zipball/06954050d4a031884c4a68a8c3efb7ec7910ebde",
-                "reference": "06954050d4a031884c4a68a8c3efb7ec7910ebde",
-                "shasum": ""
-            },
-            "require": {
-                "silex/silex": "~1.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "3.7.*",
-                "symfony/browser-kit": "2.3.*"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "JDesrosiers\\Silex\\Provider\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Jason Desrosiers",
-                    "email": "jdesrosi@gmail.com"
-                }
-            ],
-            "description": "A silex service provider that adds CORS services to silex",
-            "keywords": [
-                "cors",
-                "cross",
-                "origin",
-                "provider",
-                "resource",
-                "service",
-                "sharing",
-                "silex"
-            ],
-            "time": "2015-09-12 22:16:14"
         },
         {
             "name": "jdesrosiers/silex-swagger-provider",
@@ -1223,6 +1173,142 @@
             "time": "2016-03-23 13:23:25"
         },
         {
+            "name": "symfony/translation",
+            "version": "v3.0.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/translation.git",
+                "reference": "f7a07af51ea067745a521dab1e3152044a2fb1f2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/translation/zipball/f7a07af51ea067745a521dab1e3152044a2fb1f2",
+                "reference": "f7a07af51ea067745a521dab1e3152044a2fb1f2",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5.9",
+                "symfony/polyfill-mbstring": "~1.0"
+            },
+            "conflict": {
+                "symfony/config": "<2.8"
+            },
+            "require-dev": {
+                "psr/log": "~1.0",
+                "symfony/config": "~2.8|~3.0",
+                "symfony/intl": "~2.8|~3.0",
+                "symfony/yaml": "~2.8|~3.0"
+            },
+            "suggest": {
+                "psr/log": "To use logging capability in translator",
+                "symfony/config": "",
+                "symfony/yaml": ""
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\Translation\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony Translation Component",
+            "homepage": "https://symfony.com",
+            "time": "2016-03-25 01:41:20"
+        },
+        {
+            "name": "symfony/validator",
+            "version": "v3.0.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/validator.git",
+                "reference": "dbf5925e3a53c2df3f711a8ef9d200b6dfef34c0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/validator/zipball/dbf5925e3a53c2df3f711a8ef9d200b6dfef34c0",
+                "reference": "dbf5925e3a53c2df3f711a8ef9d200b6dfef34c0",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5.9",
+                "symfony/polyfill-mbstring": "~1.0",
+                "symfony/translation": "~2.8|~3.0"
+            },
+            "require-dev": {
+                "doctrine/annotations": "~1.0",
+                "doctrine/cache": "~1.0",
+                "egulias/email-validator": "~1.2,>=1.2.1",
+                "symfony/config": "~2.8|~3.0",
+                "symfony/expression-language": "~2.8|~3.0",
+                "symfony/http-foundation": "~2.8|~3.0",
+                "symfony/intl": "~2.8|~3.0",
+                "symfony/yaml": "~2.8|~3.0"
+            },
+            "suggest": {
+                "doctrine/annotations": "For using the annotation mapping. You will also need doctrine/cache.",
+                "doctrine/cache": "For using the default cached annotation reader and metadata cache.",
+                "egulias/email-validator": "Strict (RFC compliant) email validation",
+                "symfony/config": "",
+                "symfony/expression-language": "For using the Expression validator",
+                "symfony/http-foundation": "",
+                "symfony/intl": "",
+                "symfony/property-access": "For using the Expression validator",
+                "symfony/yaml": ""
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\Validator\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony Validator Component",
+            "homepage": "https://symfony.com",
+            "time": "2016-04-20 11:35:44"
+        },
+        {
             "name": "zircote/swagger-php",
             "version": "0.9.6",
             "source": {
@@ -1412,6 +1498,56 @@
                 "unit testing"
             ],
             "time": "2016-04-30 11:18:53"
+        },
+        {
+            "name": "jdesrosiers/silex-cors-provider",
+            "version": "v0.1.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jdesrosiers/silex-cors-provider.git",
+                "reference": "06954050d4a031884c4a68a8c3efb7ec7910ebde"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jdesrosiers/silex-cors-provider/zipball/06954050d4a031884c4a68a8c3efb7ec7910ebde",
+                "reference": "06954050d4a031884c4a68a8c3efb7ec7910ebde",
+                "shasum": ""
+            },
+            "require": {
+                "silex/silex": "~1.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "3.7.*",
+                "symfony/browser-kit": "2.3.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "JDesrosiers\\Silex\\Provider\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jason Desrosiers",
+                    "email": "jdesrosi@gmail.com"
+                }
+            ],
+            "description": "A silex service provider that adds CORS services to silex",
+            "keywords": [
+                "cors",
+                "cross",
+                "origin",
+                "provider",
+                "resource",
+                "service",
+                "sharing",
+                "silex"
+            ],
+            "time": "2015-09-12 22:16:14"
         },
         {
             "name": "symfony/filesystem",

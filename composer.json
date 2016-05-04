@@ -16,7 +16,8 @@
 		"monolog/monolog": "^1.19",
 		"chrisboulton/php-resque": "^1.2",
 		"jdesrosiers/silex-swagger-provider": "^1.2",
-		"kbrabrand/silex-swagger-ui": "^1.0"
+		"kbrabrand/silex-swagger-ui": "^1.0",
+		"symfony/validator": "^3.0"
 	},
 	"require-dev":
 	{

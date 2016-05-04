@@ -10,6 +10,7 @@ use atoum\telemetry\providers\log;
 use atoum\telemetry\providers\resque;
 use JDesrosiers\Silex\Provider\SwaggerServiceProvider;
 use Silex;
+use Silex\Provider\ValidatorServiceProvider;
 use SwaggerUI\Silex\Provider\SwaggerUIServiceProvider;
 use Swagger\Annotations as SWG;
 use Symfony\Component\HttpFoundation\Request;
@@ -44,6 +45,7 @@ class application extends Silex\Application
 					'swaggerui.apiDocPath' => '/docs'
 				]
 			)
+			->register(new ValidatorServiceProvider())
 			->register(new log())
 			->register(new influxdb())
 			->register(new resque())
@@ -54,8 +56,8 @@ class application extends Silex\Application
 
 	public function run(Request $request = null)
 	{
-		$this->post('/hook/{token}', new hook($this['auth_token'], $this['broker']));
-		$this->post('/', new telemetry($this['broker']));
+		$this->post('/hook/{token}', new hook($this['auth_token'], $this['broker'], $this['validator'], $this['logger']));
+		$this->post('/', new telemetry($this['broker'], $this['validator'], $this['logger']));
 		$this->error(new error());
 
 		parent::run($request);

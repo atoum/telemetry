@@ -2,13 +2,17 @@
 
 namespace atoum\telemetry\controllers;
 
+use atoum\telemetry\exceptions;
 use atoum\telemetry\resque\broker;
 use atoum\telemetry\resque\jobs\report;
+use Psr\Log\LoggerInterface;
 use Swagger\Annotations as SWG;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
+use Symfony\Component\Validator\Constraints;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 /**
  * @SWG\Model(
@@ -66,9 +70,21 @@ class telemetry
 	 */
 	private $broker;
 
-	public function __construct(broker $broker)
+	/**
+	 * @var ValidatorInterface
+	 */
+	private $validator;
+
+	/**
+	 * @var LoggerInterface
+	 */
+	private $logger;
+
+	public function __construct(broker $broker, ValidatorInterface $validator, LoggerInterface $logger)
 	{
 		$this->broker = $broker;
+		$this->validator = $validator;
+		$this->logger = $logger;
 	}
 
 	/**
@@ -99,6 +115,7 @@ class telemetry
 	 * @param Request $request
 	 *
 	 * @throws BadRequestHttpException
+	 * @throws exceptions\validation
 	 *
 	 * @return Response
 	 */
@@ -106,9 +123,67 @@ class telemetry
 	{
 		$report = json_decode($request->getContent(false), true);
 
-		if (is_array($report) === false)
+		if (null === $report)
 		{
-			throw new BadRequestHttpException();
+			throw new BadRequestHttpException('Invalid report payload');
+		}
+
+		$integer = new Constraints\Required([
+			'constraints' => [
+				new Constraints\NotNull(),
+				new Constraints\Type('integer'),
+				new Constraints\GreaterThanOrEqual(0)
+			]
+		]);
+
+		$constraint = new Constraints\Collection([
+			'php' => new Constraints\Required([new Constraints\NotBlank(), new Constraints\Regex('/\d+(?:\.\d+){0,2}/')]),
+			'atoum' => new Constraints\Required([new Constraints\NotBlank(), new Constraints\Regex('/^\d+(?:\.\d+){0,2}$/')]),
+			'os' => new Constraints\NotBlank(),
+			'arch' => new Constraints\NotBlank(),
+			'vendor' => new Constraints\Required([new Constraints\NotBlank(), new Constraints\Regex('/^[a-z0-9_.-]+$/')]),
+			'project' => new Constraints\Required([new Constraints\NotBlank(), new Constraints\Regex('/^[a-z0-9_.-]+$/')]),
+			'metrics' => new Constraints\Collection([
+				'classes' => $integer,
+				'exceptions' => $integer,
+				'errors' => $integer,
+				'duration' => new Constraints\Required([
+					'constraints' => [
+						new Constraints\NotNull(),
+						new Constraints\Type('numeric'),
+						new Constraints\GreaterThanOrEqual(0)
+					]
+				]),
+				'memory' => $integer,
+				'methods' => new Constraints\Collection([
+					'total' => $integer,
+					'void' => $integer,
+					'uncomplete' => $integer,
+					'skipped' => $integer,
+					'failed' => $integer,
+					'errored' => $integer,
+					'exception' => $integer,
+				]),
+				'assertions' => new Constraints\Collection([
+					'total' => $integer,
+					'passed' => $integer,
+					'failed' => $integer,
+				])
+			])
+		]);
+
+		$errors = $this->validator->validate($report, $constraint);
+
+		if ($errors->count() > 0)
+		{
+			foreach ($errors as $error) {
+				$this->logger->notice(
+					$error->getPropertyPath() . ' ' . $error->getMessage(),
+					['actual' => $error->getInvalidValue(), 'atoum' => isset($report['atoum']) ? $report['atoum'] : null]
+				);
+			}
+
+			throw new exceptions\validation($errors);
 		}
 
 		return new JsonResponse($this->broker->enqueue(report::class, ['report' => $report]));

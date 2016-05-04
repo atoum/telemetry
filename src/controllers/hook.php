@@ -2,14 +2,18 @@
 
 namespace atoum\telemetry\controllers;
 
+use atoum\telemetry\exceptions;
 use atoum\telemetry\resque\broker;
 use atoum\telemetry\resque\jobs\release;
+use Psr\Log\LoggerInterface;
 use Swagger\Annotations as SWG;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
-use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
+use Symfony\Component\Validator\Constraints;
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 /**
  * @SWG\Model(
@@ -45,10 +49,22 @@ class hook
 	 */
 	private $broker;
 
-	public function __construct($token, broker $broker)
+	/**
+	 * @var ValidatorInterface
+	 */
+	private $validator;
+
+	/**
+	 * @var LoggerInterface
+	 */
+	private $logger;
+
+	public function __construct($token, broker $broker, ValidatorInterface $validator, LoggerInterface $logger)
 	{
 		$this->token = $token;
 		$this->broker = $broker;
+		$this->validator = $validator;
+		$this->logger = $logger;
 	}
 
 	/**
@@ -83,10 +99,6 @@ class hook
 	 *         @SWG\ResponseMessage(
 	 *             code=403,
 	 *             message="Access denied"
-	 *         ),
-	 *         @SWG\ResponseMessage(
-	 *             code=404,
-	 *             message="Route is not available"
 	 *         )
 	 *     )
 	 * )
@@ -95,24 +107,42 @@ class hook
 	 * @param Request $request
 	 *
 	 * @throws AccessDeniedHttpException
-	 * @throws BadRequestHttpException
+	 * @throws exceptions\validation
 	 *
 	 * @return Response
 	 */
 	public function __invoke($token, Request $request) : Response
 	{
-		$report = json_decode($request->getContent(false), true);
+		$event = json_decode($request->getContent(false), true);
 
 		if ($token !== $this->token)
 		{
 			throw new AccessDeniedHttpException();
 		}
 
-		if (isset($report['release']) === false)
+		$constraint = new Constraints\Collection([
+			'release' => new Constraints\Collection([
+				'tag_name' => new Constraints\Regex('/^\d+(?:\.\d+){0,2}$/'),
+				'created_at' => new Constraints\Callback(function ($date, ExecutionContextInterface $context) {
+					if (false === \DateTime::createFromFormat(\DateTime::ISO8601, $date))
+					{
+						$context->addViolation('is not a valid ISO8601 date.');
+					}
+				})
+			])
+		]);
+
+		$errors = $this->validator->validate($event, $constraint);
+
+		if ($errors->count() > 0)
 		{
-			throw new BadRequestHttpException();
+			foreach ($errors as $error) {
+				$this->logger->notice($error->getPropertyPath() . ' ' . $error->getMessage(), ['actual' => $error->getInvalidValue()]);
+			}
+
+			throw new exceptions\validation($errors);
 		}
 
-		return new JsonResponse($this->broker->enqueue(release::class, ['release' => $report['release']]));
+		return new JsonResponse($this->broker->enqueue(release::class, ['release' => $event['release']]));
 	}
 }

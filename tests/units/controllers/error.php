@@ -21,6 +21,7 @@ class error extends atoum\test
 				->integer($response->getStatusCode())->isEqualTo($code)
 				->string($response->getContent())->isEqualTo(json_encode([
 					'status' => $code,
+					'type' => \mock\Symfony\Component\HttpKernel\Exception\HttpException::class,
 					'message' => $message
 				]))
 		;
