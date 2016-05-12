@@ -38,9 +38,9 @@ class report
 			'project' => $report['project']
 		];
 
-		if (isset($reports['environment']) === true)
+		if (isset($report['environment']) === true)
 		{
-			$tags['environment'] = $reports['environment'];
+			$tags['environment'] = $report['environment'];
 		}
 
 		$points = [

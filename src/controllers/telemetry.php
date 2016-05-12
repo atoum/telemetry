@@ -36,9 +36,9 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
  * )
  * @SWG\Model(
  *     id="Coverage",
- *     @SWG\Property(name="lines", type="integer", description="Lines coverage %"),
- *     @SWG\Property(name="branches", type="integer", description="Branches coverage %"),
- *     @SWG\Property(name="paths", type="integer", description="Paths coverage %")
+ *     @SWG\Property(name="lines", type="float", description="Lines coverage %"),
+ *     @SWG\Property(name="branches", type="float", description="Branches coverage %"),
+ *     @SWG\Property(name="paths", type="float", description="Paths coverage %")
  * )
  *
  * @SWG\Model(
@@ -144,6 +144,14 @@ class telemetry
 			]
 		];
 
+		$numeric = [
+			'constraints' => [
+				new Constraints\NotNull(),
+				new Constraints\Type('numeric'),
+				new Constraints\GreaterThanOrEqual(0)
+			]
+		];
+
 		$constraint = new Constraints\Collection([
 			'php' => new Constraints\Required([new Constraints\NotBlank(), new Constraints\Regex('/\d+(?:\.\d+){0,2}/')]),
 			'atoum' => new Constraints\Required([new Constraints\NotBlank(), new Constraints\Regex('/^\d+(?:\.\d+){0,2}$/')]),
@@ -181,9 +189,9 @@ class telemetry
 				'coverage' => new Constraints\Optional([
 					'constraints' => [
 						new Constraints\Collection([
-							'lines' => new Constraints\Optional($integer),
-							'branches' => new Constraints\Optional($integer),
-							'paths' => new Constraints\Optional($integer)
+							'lines' => new Constraints\Optional($numeric),
+							'branches' => new Constraints\Optional($numeric),
+							'paths' => new Constraints\Optional($numeric)
 						])
 					]
 				])

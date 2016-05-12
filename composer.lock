@@ -1448,26 +1448,26 @@
         },
         {
             "name": "atoum/reports-extension",
-            "version": "2.0.1",
+            "version": "2.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/atoum/reports-extension.git",
-                "reference": "ed698facea3310c7f0761be382d05fa5ccb2a009"
+                "reference": "8c02fa180e2fb5817fa4f5e4143850e1c0380930"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/atoum/reports-extension/zipball/ed698facea3310c7f0761be382d05fa5ccb2a009",
-                "reference": "ed698facea3310c7f0761be382d05fa5ccb2a009",
+                "url": "https://api.github.com/repos/atoum/reports-extension/zipball/8c02fa180e2fb5817fa4f5e4143850e1c0380930",
+                "reference": "8c02fa180e2fb5817fa4f5e4143850e1c0380930",
                 "shasum": ""
             },
             "require": {
                 "guzzlehttp/guzzle": "^6.2",
                 "php": ">=5.5.0",
-                "symfony/filesystem": "~2.6",
-                "twig/twig": "~1.18"
+                "symfony/filesystem": "^2.6 | ^3.0",
+                "twig/twig": "^1.18"
             },
             "require-dev": {
-                "atoum/atoum": "~2.1"
+                "atoum/atoum": "^2.5.1"
             },
             "type": "library",
             "autoload": {
@@ -1497,7 +1497,7 @@
                 "test",
                 "unit testing"
             ],
-            "time": "2016-04-30 11:18:53"
+            "time": "2016-05-12 22:55:20"
         },
         {
             "name": "jdesrosiers/silex-cors-provider",
