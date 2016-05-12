@@ -98,7 +98,7 @@
                                     "type": "fill"
                                 }
                             ],
-                            "query": "SELECT time, top(\"classes\", 1) FROM suites WHERE $timeFilter AND os =~ /$OS$/ AND \"arch\" =~ /$arch$/ AND atoum =~ /$atoum$/ AND php =~ /$PHP$/ AND vendor =~ /$vendor$/ GROUP BY vendor, project",
+                            "query": "SELECT time, top(\"classes\", 1) FROM suites WHERE os =~ /$OS$/ AND \"arch\" =~ /$arch$/ AND atoum =~ /$atoum$/ AND php =~ /$PHP$/ AND vendor =~ /$vendor$/ GROUP BY vendor, project",
                             "rawQuery": true,
                             "refId": "A",
                             "resultFormat": "table",
@@ -205,7 +205,7 @@
                                     "type": "fill"
                                 }
                             ],
-                            "query": "SELECT time, top(\"methods\", 1) FROM \"suites\" WHERE $timeFilter AND os =~ /$OS$/ AND \"arch\" =~ /$arch$/ AND atoum =~ /$atoum$/ AND php =~ /$PHP$/ AND vendor =~ /$vendor$/ GROUP BY vendor, project",
+                            "query": "SELECT time, top(\"methods\", 1) FROM \"suites\" WHERE os =~ /$OS$/ AND \"arch\" =~ /$arch$/ AND atoum =~ /$atoum$/ AND php =~ /$PHP$/ AND vendor =~ /$vendor$/ GROUP BY vendor, project",
                             "rawQuery": true,
                             "refId": "A",
                             "resultFormat": "table",
@@ -312,7 +312,7 @@
                                     "type": "fill"
                                 }
                             ],
-                            "query": "SELECT time, top(\"assertions\", 1) FROM \"suites\" WHERE $timeFilter AND os =~ /$OS$/ AND \"arch\" =~ /$arch$/ AND atoum =~ /$atoum$/ AND php =~ /$PHP$/ AND vendor =~ /$vendor$/ GROUP BY vendor, project",
+                            "query": "SELECT time, top(\"assertions\", 1) FROM \"suites\" WHERE os =~ /$OS$/ AND \"arch\" =~ /$arch$/ AND atoum =~ /$atoum$/ AND php =~ /$PHP$/ AND vendor =~ /$vendor$/ GROUP BY vendor, project",
                             "rawQuery": true,
                             "refId": "A",
                             "resultFormat": "table",
@@ -437,7 +437,7 @@
                                     "type": "fill"
                                 }
                             ],
-                            "query": "SELECT time, project, bottom(\"duration\", 1) FROM \"suites\" WHERE $timeFilter AND os =~ /$OS$/ AND \"arch\" =~ /$arch$/ AND atoum =~ /$atoum$/ AND php =~ /$PHP$/ AND vendor =~ /$vendor$/ GROUP BY vendor, project",
+                            "query": "SELECT time, project, bottom(\"duration\", 1) FROM \"suites\" WHERE os =~ /$OS$/ AND \"arch\" =~ /$arch$/ AND atoum =~ /$atoum$/ AND php =~ /$PHP$/ AND vendor =~ /$vendor$/ GROUP BY vendor, project",
                             "rawQuery": true,
                             "refId": "A",
                             "resultFormat": "table",
@@ -545,7 +545,7 @@
                                     "type": "fill"
                                 }
                             ],
-                            "query": "SELECT time, bottom(\"memory\", 1) FROM \"suites\" WHERE $timeFilter AND os =~ /$OS$/ AND \"arch\" =~ /$arch$/ AND atoum =~ /$atoum$/ AND php =~ /$PHP$/ AND vendor =~ /$vendor$/ GROUP BY vendor, project",
+                            "query": "SELECT time, bottom(\"memory\", 1) FROM \"suites\" WHERE os =~ /$OS$/ AND \"arch\" =~ /$arch$/ AND atoum =~ /$atoum$/ AND php =~ /$PHP$/ AND vendor =~ /$vendor$/ GROUP BY vendor, project",
                             "rawQuery": true,
                             "refId": "A",
                             "resultFormat": "table",
@@ -631,7 +631,7 @@
                                     "type": "fill"
                                 }
                             ],
-                            "query": "SELECT SUM(value) FROM suites WHERE $timeFilter AND os =~ /$OS$/ AND \"arch\" =~ /$arch$/ AND atoum =~ /$atoum$/  AND vendor =~ /$vendor$/ GROUP BY php",
+                            "query": "SELECT SUM(value) FROM suites WHERE os =~ /$OS$/ AND \"arch\" =~ /$arch$/ AND atoum =~ /$atoum$/  AND vendor =~ /$vendor$/ GROUP BY php",
                             "rawQuery": true,
                             "refId": "A",
                             "resultFormat": "table",
@@ -709,7 +709,7 @@
                                     "type": "fill"
                                 }
                             ],
-                            "query": "SELECT SUM(value) FROM suites WHERE $timeFilter AND os =~ /$OS$/ AND \"arch\" =~ /$arch$/ AND php =~ /$PHP$/ AND vendor =~ /$vendor$/ GROUP BY atoum",
+                            "query": "SELECT SUM(value) FROM suites WHERE os =~ /$OS$/ AND \"arch\" =~ /$arch$/ AND php =~ /$PHP$/ AND vendor =~ /$vendor$/ GROUP BY atoum",
                             "rawQuery": true,
                             "refId": "A",
                             "resultFormat": "table",
@@ -795,7 +795,7 @@
                                     "type": "fill"
                                 }
                             ],
-                            "query": "SELECT SUM(value) FROM suites WHERE $timeFilter AND atoum =~ /$atoum$/ AND \"arch\" =~ /$arch$/ AND php =~ /$PHP$/ AND vendor =~ /$vendor$/ GROUP BY os",
+                            "query": "SELECT SUM(value) FROM suites WHERE atoum =~ /$atoum$/ AND \"arch\" =~ /$arch$/ AND php =~ /$PHP$/ AND vendor =~ /$vendor$/ GROUP BY os",
                             "rawQuery": true,
                             "refId": "A",
                             "resultFormat": "table",
@@ -873,7 +873,7 @@
                                     "type": "fill"
                                 }
                             ],
-                            "query": "SELECT SUM(value) FROM suites WHERE $timeFilter AND atoum =~ /$atoum$/ AND \"os\" =~ /$OS$/ AND php =~ /$PHP$/ AND vendor =~ /$vendor$/ GROUP BY arch",
+                            "query": "SELECT SUM(value) FROM suites WHERE atoum =~ /$atoum$/ AND \"os\" =~ /$OS$/ AND php =~ /$PHP$/ AND vendor =~ /$vendor$/ GROUP BY arch",
                             "rawQuery": true,
                             "refId": "A",
                             "resultFormat": "table",
@@ -895,6 +895,83 @@
                         }
                     ],
                     "title": "Architectures",
+                    "transform": "table",
+                    "type": "table"
+                }
+            ],
+            "title": "New row"
+        },
+        {
+            "collapse": false,
+            "editable": true,
+            "height": "250px",
+            "panels": [
+                {
+                    "columns": [],
+                    "editable": true,
+                    "error": false,
+                    "fontSize": "100%",
+                    "id": 10,
+                    "isNew": true,
+                    "links": [],
+                    "pageSize": 5,
+                    "scroll": true,
+                    "showHeader": true,
+                    "sort": {
+                        "col": 2,
+                        "desc": true
+                    },
+                    "span": 12,
+                    "styles": [
+                        {
+                            "dateFormat": "YYYY-MM-DD HH:mm:ss",
+                            "pattern": "Time",
+                            "type": "date"
+                        },
+                        {
+                            "colorMode": null,
+                            "colors": [
+                                "rgba(245, 54, 54, 0.9)",
+                                "rgba(237, 129, 40, 0.89)",
+                                "rgba(50, 172, 45, 0.97)"
+                            ],
+                            "decimals": 2,
+                            "pattern": "/.*/",
+                            "thresholds": [],
+                            "type": "number",
+                            "unit": "short"
+                        }
+                    ],
+                    "targets": [
+                        {
+                            "dsType": "influxdb",
+                            "groupBy": [
+                                {
+                                    "params": [
+                                        "environment"
+                                    ],
+                                    "type": "tag"
+                                }
+                            ],
+                            "measurement": "suites",
+                            "query": "SELECT SUM(value) FROM \"suites\" WHERE os =~ /$OS$/ AND \"arch\" =~ /$arch$/ AND atoum =~ /$atoum$/  AND vendor =~ /$vendor$/ AND php =~ /$PHP$/ GROUP BY \"environment\"",
+                            "rawQuery": true,
+                            "refId": "A",
+                            "resultFormat": "table",
+                            "select": [
+                                [
+                                    {
+                                        "params": [
+                                            "value"
+                                        ],
+                                        "type": "field"
+                                    }
+                                ]
+                            ],
+                            "tags": []
+                        }
+                    ],
+                    "title": "Environment",
                     "transform": "table",
                     "type": "table"
                 }
@@ -937,7 +1014,6 @@
             {
                 "allFormat": "regex wildcard",
                 "current": {
-                    "selected": true,
                     "text": "All",
                     "value": ".*"
                 },
@@ -948,44 +1024,44 @@
                 "name": "OS",
                 "options": [
                     {
-                        "selected": true,
                         "text": "All",
-                        "value": ".*"
+                        "value": ".*",
+                        "selected": true
                     },
                     {
-                        "selected": false,
                         "text": "Darwin 15.4.0",
-                        "value": "Darwin\\ 15\\.4\\.0"
+                        "value": "Darwin\\ 15\\.4\\.0",
+                        "selected": false
                     },
                     {
-                        "selected": false,
                         "text": "Linux 3.13.0-40-generic",
-                        "value": "Linux\\ 3\\.13\\.0\\-40\\-generic"
+                        "value": "Linux\\ 3\\.13\\.0\\-40\\-generic",
+                        "selected": false
                     },
                     {
-                        "selected": false,
                         "text": "Linux 3.13.0-85-generic",
-                        "value": "Linux\\ 3\\.13\\.0\\-85\\-generic"
+                        "value": "Linux\\ 3\\.13\\.0\\-85\\-generic",
+                        "selected": false
                     },
                     {
-                        "selected": false,
                         "text": "Linux 3.16.0-4-amd64",
-                        "value": "Linux\\ 3\\.16\\.0\\-4\\-amd64"
+                        "value": "Linux\\ 3\\.16\\.0\\-4\\-amd64",
+                        "selected": false
                     },
                     {
-                        "selected": false,
                         "text": "Linux 4.2.0-35-generic",
-                        "value": "Linux\\ 4\\.2\\.0\\-35\\-generic"
+                        "value": "Linux\\ 4\\.2\\.0\\-35\\-generic",
+                        "selected": false
                     },
                     {
-                        "selected": false,
                         "text": "Linux 4.5.2-1-ARCH",
-                        "value": "Linux\\ 4\\.5\\.2\\-1\\-ARCH"
+                        "value": "Linux\\ 4\\.5\\.2\\-1\\-ARCH",
+                        "selected": false
                     },
                     {
-                        "selected": false,
                         "text": "Windows NT 6.3",
-                        "value": "Windows\\ NT\\ 6\\.3"
+                        "value": "Windows\\ NT\\ 6\\.3",
+                        "selected": false
                     }
                 ],
                 "query": "SHOW TAG VALUES FROM suites WITH KEY IN (os)",
@@ -996,7 +1072,6 @@
             {
                 "allFormat": "regex wildcard",
                 "current": {
-                    "selected": true,
                     "text": "All",
                     "value": ".*"
                 },
@@ -1007,19 +1082,19 @@
                 "name": "arch",
                 "options": [
                     {
-                        "selected": true,
                         "text": "All",
-                        "value": ".*"
+                        "value": ".*",
+                        "selected": true
                     },
                     {
-                        "selected": false,
                         "text": "AMD64",
-                        "value": "AMD64"
+                        "value": "AMD64",
+                        "selected": false
                     },
                     {
-                        "selected": false,
                         "text": "x86_64",
-                        "value": "x86_64"
+                        "value": "x86_64",
+                        "selected": false
                     }
                 ],
                 "query": "SHOW TAG VALUES FROM suites WITH KEY IN (arch)",
@@ -1031,7 +1106,6 @@
             {
                 "allFormat": "regex wildcard",
                 "current": {
-                    "selected": true,
                     "text": "All",
                     "value": ".*"
                 },
@@ -1042,54 +1116,54 @@
                 "name": "PHP",
                 "options": [
                     {
-                        "selected": true,
                         "text": "All",
-                        "value": ".*"
+                        "value": ".*",
+                        "selected": true
                     },
                     {
-                        "selected": false,
                         "text": "5.5.13",
-                        "value": "5\\.5\\.13"
+                        "value": "5\\.5\\.13",
+                        "selected": false
                     },
                     {
-                        "selected": false,
                         "text": "5.5.21",
-                        "value": "5\\.5\\.21"
+                        "value": "5\\.5\\.21",
+                        "selected": false
                     },
                     {
-                        "selected": false,
                         "text": "5.6.11",
-                        "value": "5\\.6\\.11"
+                        "value": "5\\.6\\.11",
+                        "selected": false
                     },
                     {
-                        "selected": false,
                         "text": "5.6.21",
-                        "value": "5\\.6\\.21"
+                        "value": "5\\.6\\.21",
+                        "selected": false
                     },
                     {
-                        "selected": false,
                         "text": "5.6.4",
-                        "value": "5\\.6\\.4"
+                        "value": "5\\.6\\.4",
+                        "selected": false
                     },
                     {
-                        "selected": false,
                         "text": "5.6.5",
-                        "value": "5\\.6\\.5"
+                        "value": "5\\.6\\.5",
+                        "selected": false
                     },
                     {
-                        "selected": false,
                         "text": "7.0.4",
-                        "value": "7\\.0\\.4"
+                        "value": "7\\.0\\.4",
+                        "selected": false
                     },
                     {
-                        "selected": false,
                         "text": "7.0.5",
-                        "value": "7\\.0\\.5"
+                        "value": "7\\.0\\.5",
+                        "selected": false
                     },
                     {
-                        "selected": false,
                         "text": "7.0.6",
-                        "value": "7\\.0\\.6"
+                        "value": "7\\.0\\.6",
+                        "selected": false
                     }
                 ],
                 "query": "SHOW TAG VALUES FROM suites WITH KEY IN (php)",
@@ -1100,7 +1174,6 @@
             {
                 "allFormat": "regex wildcard",
                 "current": {
-                    "selected": true,
                     "text": "All",
                     "value": ".*"
                 },
@@ -1111,24 +1184,24 @@
                 "name": "atoum",
                 "options": [
                     {
-                        "selected": true,
                         "text": "All",
-                        "value": ".*"
+                        "value": ".*",
+                        "selected": true
                     },
                     {
-                        "selected": false,
                         "text": "2.5.1",
-                        "value": "2\\.5\\.1"
+                        "value": "2\\.5\\.1",
+                        "selected": false
                     },
                     {
-                        "selected": false,
                         "text": "2.6.1",
-                        "value": "2\\.6\\.1"
+                        "value": "2\\.6\\.1",
+                        "selected": false
                     },
                     {
-                        "selected": false,
                         "text": "dev-master",
-                        "value": "dev\\-master"
+                        "value": "dev\\-master",
+                        "selected": false
                     }
                 ],
                 "query": "SHOW TAG VALUES FROM suites WITH KEY IN (atoum)",
@@ -1139,7 +1212,6 @@
             {
                 "allFormat": "regex wildcard",
                 "current": {
-                    "selected": true,
                     "text": "All",
                     "value": ".*"
                 },
@@ -1150,44 +1222,44 @@
                 "name": "vendor",
                 "options": [
                     {
-                        "selected": true,
                         "text": "All",
-                        "value": ".*"
+                        "value": ".*",
+                        "selected": true
                     },
                     {
-                        "selected": false,
                         "text": "anon",
-                        "value": "anon"
+                        "value": "anon",
+                        "selected": false
                     },
                     {
-                        "selected": false,
                         "text": "atoum",
-                        "value": "atoum"
+                        "value": "atoum",
+                        "selected": false
                     },
                     {
-                        "selected": false,
                         "text": "bepark",
-                        "value": "bepark"
+                        "value": "bepark",
+                        "selected": false
                     },
                     {
-                        "selected": false,
                         "text": "blackprism",
-                        "value": "blackprism"
+                        "value": "blackprism",
+                        "selected": false
                     },
                     {
-                        "selected": false,
                         "text": "hoa",
-                        "value": "hoa"
+                        "value": "hoa",
+                        "selected": false
                     },
                     {
-                        "selected": false,
                         "text": "jubianchi",
-                        "value": "jubianchi"
+                        "value": "jubianchi",
+                        "selected": false
                     },
                     {
-                        "selected": false,
                         "text": "pmsipilot",
-                        "value": "pmsipilot"
+                        "value": "pmsipilot",
+                        "selected": false
                     }
                 ],
                 "query": "SHOW TAG VALUES FROM suites WITH KEY IN (vendor)",
@@ -1202,7 +1274,7 @@
     },
     "refresh": "30s",
     "schemaVersion": 8,
-    "version": 7,
+    "version": 2,
     "links": [
         {
             "asDropdown": true,
