@@ -29,18 +29,25 @@ class report
 
 		preg_match('/(?:PHP )?(\d+\.\d+\.\d+)/', $report['php'], $php);
 
+		$tags = [
+			'php' => $php[1],
+			'atoum' => $report['atoum'],
+			'os' =>  $report['os'],
+			'arch' =>  $report['arch'],
+			'vendor' => $report['vendor'],
+			'project' => $report['project']
+		];
+
+		if (isset($reports['environment']) === true)
+		{
+			$tags['environment'] = $reports['environment'];
+		}
+
 		$points = [
 			new Point(
 				'suites',
 				1,
-				[
-					'php' => $php[1],
-					'atoum' => $report['atoum'],
-					'os' =>  $report['os'],
-					'arch' =>  $report['arch'],
-					'vendor' => $report['vendor'],
-					'project' => $report['project']
-				],
+				$tags,
 				[
 					'classes' => $report['metrics']['classes'],
 					'methods' => $report['metrics']['methods']['total'],
@@ -55,14 +62,7 @@ class report
 			new Point(
 				'assertions',
 				$report['metrics']['assertions']['total'],
-				[
-					'php' => $php[1],
-					'atoum' => $report['atoum'],
-					'os' =>  $report['os'],
-					'arch' =>  $report['arch'],
-					'vendor' => $report['vendor'],
-					'project' => $report['project']
-				],
+				$tags,
 				[
 					'passed' => $report['metrics']['assertions']['passed'],
 					'failed' => $report['metrics']['assertions']['failed']
@@ -72,14 +72,7 @@ class report
 			new Point(
 				'methods',
 				$report['metrics']['methods']['total'],
-				[
-					'php' => $php[1],
-					'atoum' => $report['atoum'],
-					'os' =>  $report['os'],
-					'arch' =>  $report['arch'],
-					'vendor' => $report['vendor'],
-					'project' => $report['project']
-				],
+				$tags,
 				[
 					'void' => $report['metrics']['methods']['void'],
 					'uncomplete' => $report['metrics']['methods']['uncomplete'],
@@ -91,6 +84,23 @@ class report
 				time()
 			)
 		];
+
+		if (isset($report['metrics']['coverage']) === true && isset($report['metrics']['coverage']['lines']) === true)
+		{
+			$values = [];
+
+			if (isset($report['metrics']['coverage']['branches']) === true)
+			{
+				$values['branches'] = $report['metrics']['coverage']['branches'];
+			}
+
+			if (isset($report['metrics']['coverage']['paths']) === true)
+			{
+				$values['paths'] = $report['metrics']['coverage']['paths'];
+			}
+
+			$points[] = new Point('coverage', $report['metrics']['coverage']['lines'], $tags, $values, time());
+		}
 
 		$this->database->writePoints($points, Database::PRECISION_SECONDS);
 	}

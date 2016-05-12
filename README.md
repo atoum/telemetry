@@ -80,4 +80,3 @@ There are also two routes to access the API documentation:
 * Suites: Unit on "Number of tests"
 * Means: Unit on "Assertions"
 * Top 5: Remove time filter
-* Top 5: Fix ordering on "PHP versions"

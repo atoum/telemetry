@@ -137,7 +137,7 @@ class hook
 		if ($errors->count() > 0)
 		{
 			foreach ($errors as $error) {
-				$this->logger->notice($error->getPropertyPath() . ' ' . $error->getMessage(), ['actual' => $error->getInvalidValue()]);
+				$this->logger->warning($error->getPropertyPath() . ' ' . $error->getMessage(), ['actual' => $error->getInvalidValue()]);
 			}
 
 			throw new exceptions\validation($errors);

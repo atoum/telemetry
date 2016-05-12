@@ -336,7 +336,15 @@
                     "title": "Assertions",
                     "transform": "table",
                     "type": "table"
-                },
+                }
+            ],
+            "title": "Row"
+        },
+        {
+            "collapse": false,
+            "editable": true,
+            "height": "250px",
+            "panels": [
                 {
                     "columns": [],
                     "editable": true,
@@ -561,7 +569,15 @@
                     "title": "Memory",
                     "transform": "table",
                     "type": "table"
-                },
+                }
+            ],
+            "title": "New row"
+        },
+        {
+            "collapse": false,
+            "editable": true,
+            "height": "250px",
+            "panels": [
                 {
                     "columns": [],
                     "editable": true,
@@ -574,8 +590,8 @@
                     "scroll": false,
                     "showHeader": true,
                     "sort": {
-                        "col": null,
-                        "desc": false
+                        "col": 2,
+                        "desc": true
                     },
                     "span": 6,
                     "styles": [
@@ -717,7 +733,15 @@
                     "title": "atoum versions",
                     "transform": "table",
                     "type": "table"
-                },
+                }
+            ],
+            "title": "New row"
+        },
+        {
+            "collapse": false,
+            "editable": true,
+            "height": "250px",
+            "panels": [
                 {
                     "columns": [],
                     "editable": true,
@@ -875,7 +899,7 @@
                     "type": "table"
                 }
             ],
-            "title": "Row"
+            "title": "New row"
         }
     ],
     "time": {
@@ -913,6 +937,7 @@
             {
                 "allFormat": "regex wildcard",
                 "current": {
+                    "selected": true,
                     "text": "All",
                     "value": ".*"
                 },
@@ -926,6 +951,41 @@
                         "selected": true,
                         "text": "All",
                         "value": ".*"
+                    },
+                    {
+                        "selected": false,
+                        "text": "Darwin 15.4.0",
+                        "value": "Darwin\\ 15\\.4\\.0"
+                    },
+                    {
+                        "selected": false,
+                        "text": "Linux 3.13.0-40-generic",
+                        "value": "Linux\\ 3\\.13\\.0\\-40\\-generic"
+                    },
+                    {
+                        "selected": false,
+                        "text": "Linux 3.13.0-85-generic",
+                        "value": "Linux\\ 3\\.13\\.0\\-85\\-generic"
+                    },
+                    {
+                        "selected": false,
+                        "text": "Linux 3.16.0-4-amd64",
+                        "value": "Linux\\ 3\\.16\\.0\\-4\\-amd64"
+                    },
+                    {
+                        "selected": false,
+                        "text": "Linux 4.2.0-35-generic",
+                        "value": "Linux\\ 4\\.2\\.0\\-35\\-generic"
+                    },
+                    {
+                        "selected": false,
+                        "text": "Linux 4.5.2-1-ARCH",
+                        "value": "Linux\\ 4\\.5\\.2\\-1\\-ARCH"
+                    },
+                    {
+                        "selected": false,
+                        "text": "Windows NT 6.3",
+                        "value": "Windows\\ NT\\ 6\\.3"
                     }
                 ],
                 "query": "SHOW TAG VALUES FROM suites WITH KEY IN (os)",
@@ -936,6 +996,7 @@
             {
                 "allFormat": "regex wildcard",
                 "current": {
+                    "selected": true,
                     "text": "All",
                     "value": ".*"
                 },
@@ -946,9 +1007,19 @@
                 "name": "arch",
                 "options": [
                     {
+                        "selected": true,
                         "text": "All",
-                        "value": ".*",
-                        "selected": true
+                        "value": ".*"
+                    },
+                    {
+                        "selected": false,
+                        "text": "AMD64",
+                        "value": "AMD64"
+                    },
+                    {
+                        "selected": false,
+                        "text": "x86_64",
+                        "value": "x86_64"
                     }
                 ],
                 "query": "SHOW TAG VALUES FROM suites WITH KEY IN (arch)",
@@ -960,6 +1031,7 @@
             {
                 "allFormat": "regex wildcard",
                 "current": {
+                    "selected": true,
                     "text": "All",
                     "value": ".*"
                 },
@@ -970,9 +1042,54 @@
                 "name": "PHP",
                 "options": [
                     {
+                        "selected": true,
                         "text": "All",
-                        "value": ".*",
-                        "selected": true
+                        "value": ".*"
+                    },
+                    {
+                        "selected": false,
+                        "text": "5.5.13",
+                        "value": "5\\.5\\.13"
+                    },
+                    {
+                        "selected": false,
+                        "text": "5.5.21",
+                        "value": "5\\.5\\.21"
+                    },
+                    {
+                        "selected": false,
+                        "text": "5.6.11",
+                        "value": "5\\.6\\.11"
+                    },
+                    {
+                        "selected": false,
+                        "text": "5.6.21",
+                        "value": "5\\.6\\.21"
+                    },
+                    {
+                        "selected": false,
+                        "text": "5.6.4",
+                        "value": "5\\.6\\.4"
+                    },
+                    {
+                        "selected": false,
+                        "text": "5.6.5",
+                        "value": "5\\.6\\.5"
+                    },
+                    {
+                        "selected": false,
+                        "text": "7.0.4",
+                        "value": "7\\.0\\.4"
+                    },
+                    {
+                        "selected": false,
+                        "text": "7.0.5",
+                        "value": "7\\.0\\.5"
+                    },
+                    {
+                        "selected": false,
+                        "text": "7.0.6",
+                        "value": "7\\.0\\.6"
                     }
                 ],
                 "query": "SHOW TAG VALUES FROM suites WITH KEY IN (php)",
@@ -983,6 +1100,7 @@
             {
                 "allFormat": "regex wildcard",
                 "current": {
+                    "selected": true,
                     "text": "All",
                     "value": ".*"
                 },
@@ -993,9 +1111,24 @@
                 "name": "atoum",
                 "options": [
                     {
+                        "selected": true,
                         "text": "All",
-                        "value": ".*",
-                        "selected": true
+                        "value": ".*"
+                    },
+                    {
+                        "selected": false,
+                        "text": "2.5.1",
+                        "value": "2\\.5\\.1"
+                    },
+                    {
+                        "selected": false,
+                        "text": "2.6.1",
+                        "value": "2\\.6\\.1"
+                    },
+                    {
+                        "selected": false,
+                        "text": "dev-master",
+                        "value": "dev\\-master"
                     }
                 ],
                 "query": "SHOW TAG VALUES FROM suites WITH KEY IN (atoum)",
@@ -1020,10 +1153,45 @@
                         "selected": true,
                         "text": "All",
                         "value": ".*"
+                    },
+                    {
+                        "selected": false,
+                        "text": "anon",
+                        "value": "anon"
+                    },
+                    {
+                        "selected": false,
+                        "text": "atoum",
+                        "value": "atoum"
+                    },
+                    {
+                        "selected": false,
+                        "text": "bepark",
+                        "value": "bepark"
+                    },
+                    {
+                        "selected": false,
+                        "text": "blackprism",
+                        "value": "blackprism"
+                    },
+                    {
+                        "selected": false,
+                        "text": "hoa",
+                        "value": "hoa"
+                    },
+                    {
+                        "selected": false,
+                        "text": "jubianchi",
+                        "value": "jubianchi"
+                    },
+                    {
+                        "selected": false,
+                        "text": "pmsipilot",
+                        "value": "pmsipilot"
                     }
                 ],
                 "query": "SHOW TAG VALUES FROM suites WITH KEY IN (vendor)",
-                "refresh": false,
+                "refresh": true,
                 "regex": "",
                 "type": "query"
             }
@@ -1034,7 +1202,7 @@
     },
     "refresh": "30s",
     "schemaVersion": 8,
-    "version": 12,
+    "version": 7,
     "links": [
         {
             "asDropdown": true,

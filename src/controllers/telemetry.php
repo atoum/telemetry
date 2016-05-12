@@ -34,6 +34,12 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
  *     @SWG\Property(name="errored", type="integer", description="Number of errored methods"),
  *     @SWG\Property(name="exception", type="integer", description="Number of methods with exceptions")
  * )
+ * @SWG\Model(
+ *     id="Coverage",
+ *     @SWG\Property(name="lines", type="integer", description="Lines coverage %"),
+ *     @SWG\Property(name="branches", type="integer", description="Branches coverage %"),
+ *     @SWG\Property(name="paths", type="integer", description="Paths coverage %")
+ * )
  *
  * @SWG\Model(
  *     id="Metrics",
@@ -44,7 +50,8 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
  *     @SWG\Property(name="exceptions", type="integer", description="Number of exceptions"),
  *     @SWG\Property(name="errors", type="integer", description="Number of erorrs"),
  *     @SWG\Property(name="duration", type="integer", description="Duration (seconds)"),
- *     @SWG\Property(name="memory", type="integer", description="Memory (in bytes)")
+ *     @SWG\Property(name="memory", type="integer", description="Memory (in bytes)"),
+ *     @SWG\Property(name="coverage", type="Coverage", description="Code coverage")
  * )
  *
  * @SWG\Model(
@@ -54,6 +61,7 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
  *     @SWG\Property(name="atoum", type="string", description="atoum version number (x.y.z)"),
  *     @SWG\Property(name="os", type="string", description="Operating system description"),
  *     @SWG\Property(name="arch", type="string", description="Architecture"),
+ *     @SWG\Property(name="environment", type="string", description="CI environment"),
  *     @SWG\Property(name="vendor", type="string", description="Vendor name"),
  *     @SWG\Property(name="project", type="string", description="Project name"),
  *     @SWG\Property(name="metrics", type="Metrics", description="Metrics")
@@ -128,25 +136,26 @@ class telemetry
 			throw new BadRequestHttpException('Invalid report payload');
 		}
 
-		$integer = new Constraints\Required([
+		$integer = [
 			'constraints' => [
 				new Constraints\NotNull(),
 				new Constraints\Type('integer'),
 				new Constraints\GreaterThanOrEqual(0)
 			]
-		]);
+		];
 
 		$constraint = new Constraints\Collection([
 			'php' => new Constraints\Required([new Constraints\NotBlank(), new Constraints\Regex('/\d+(?:\.\d+){0,2}/')]),
 			'atoum' => new Constraints\Required([new Constraints\NotBlank(), new Constraints\Regex('/^\d+(?:\.\d+){0,2}$/')]),
 			'os' => new Constraints\NotBlank(),
 			'arch' => new Constraints\NotBlank(),
+			'environment' => new Constraints\Optional(['constraints' => [new Constraints\NotBlank()]]),
 			'vendor' => new Constraints\Required([new Constraints\NotBlank(), new Constraints\Regex('/^[a-z0-9_.-]+$/')]),
 			'project' => new Constraints\Required([new Constraints\NotBlank(), new Constraints\Regex('/^[a-z0-9_.-]+$/')]),
 			'metrics' => new Constraints\Collection([
-				'classes' => $integer,
-				'exceptions' => $integer,
-				'errors' => $integer,
+				'classes' => new Constraints\Required($integer),
+				'exceptions' => new Constraints\Required($integer),
+				'errors' => new Constraints\Required($integer),
 				'duration' => new Constraints\Required([
 					'constraints' => [
 						new Constraints\NotNull(),
@@ -154,20 +163,29 @@ class telemetry
 						new Constraints\GreaterThanOrEqual(0)
 					]
 				]),
-				'memory' => $integer,
+				'memory' => new Constraints\Required($integer),
 				'methods' => new Constraints\Collection([
-					'total' => $integer,
-					'void' => $integer,
-					'uncomplete' => $integer,
-					'skipped' => $integer,
-					'failed' => $integer,
-					'errored' => $integer,
-					'exception' => $integer,
+					'total' => new Constraints\Required($integer),
+					'void' => new Constraints\Required($integer),
+					'uncomplete' => new Constraints\Required($integer),
+					'skipped' => new Constraints\Required($integer),
+					'failed' => new Constraints\Required($integer),
+					'errored' => new Constraints\Required($integer),
+					'exception' => new Constraints\Required($integer),
 				]),
 				'assertions' => new Constraints\Collection([
-					'total' => $integer,
-					'passed' => $integer,
-					'failed' => $integer,
+					'total' => new Constraints\Required($integer),
+					'passed' => new Constraints\Required($integer),
+					'failed' => new Constraints\Required($integer),
+				]),
+				'coverage' => new Constraints\Optional([
+					'constraints' => [
+						new Constraints\Collection([
+							'lines' => new Constraints\Optional($integer),
+							'branches' => new Constraints\Optional($integer),
+							'paths' => new Constraints\Optional($integer)
+						])
+					]
 				])
 			])
 		]);
@@ -177,7 +195,7 @@ class telemetry
 		if ($errors->count() > 0)
 		{
 			foreach ($errors as $error) {
-				$this->logger->notice(
+				$this->logger->warning(
 					$error->getPropertyPath() . ' ' . $error->getMessage(),
 					['actual' => $error->getInvalidValue(), 'atoum' => isset($report['atoum']) ? $report['atoum'] : null]
 				);
