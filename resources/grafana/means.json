@@ -432,7 +432,7 @@
                     "x-axis": true,
                     "y-axis": true,
                     "y_formats": [
-                        "bytes",
+                        "short",
                         "short"
                     ]
                 }
@@ -474,6 +474,7 @@
             {
                 "allFormat": "regex wildcard",
                 "current": {
+                    "selected": true,
                     "text": "All",
                     "value": ".*"
                 },
@@ -484,24 +485,24 @@
                 "name": "OS",
                 "options": [
                     {
+                        "selected": true,
                         "text": "All",
-                        "value": ".*",
-                        "selected": true
+                        "value": ".*"
                     },
                     {
+                        "selected": false,
                         "text": "Darwin 15.4.0",
-                        "value": "Darwin\\ 15\\.4\\.0",
-                        "selected": false
+                        "value": "Darwin\\ 15\\.4\\.0"
                     },
                     {
+                        "selected": false,
                         "text": "Linux 3.13.0-40-generic",
-                        "value": "Linux\\ 3\\.13\\.0\\-40\\-generic",
-                        "selected": false
+                        "value": "Linux\\ 3\\.13\\.0\\-40\\-generic"
                     },
                     {
+                        "selected": false,
                         "text": "Windows NT 6.3",
-                        "value": "Windows\\ NT\\ 6\\.3",
-                        "selected": false
+                        "value": "Windows\\ NT\\ 6\\.3"
                     }
                 ],
                 "query": "SHOW TAG VALUES FROM suites WITH KEY IN (os)",
@@ -512,6 +513,7 @@
             {
                 "allFormat": "regex wildcard",
                 "current": {
+                    "selected": true,
                     "text": "All",
                     "value": ".*"
                 },
@@ -522,19 +524,19 @@
                 "name": "arch",
                 "options": [
                     {
+                        "selected": true,
                         "text": "All",
-                        "value": ".*",
-                        "selected": true
+                        "value": ".*"
                     },
                     {
+                        "selected": false,
                         "text": "AMD64",
-                        "value": "AMD64",
-                        "selected": false
+                        "value": "AMD64"
                     },
                     {
+                        "selected": false,
                         "text": "x86_64",
-                        "value": "x86_64",
-                        "selected": false
+                        "value": "x86_64"
                     }
                 ],
                 "query": "SHOW TAG VALUES FROM suites WITH KEY IN (arch)",
@@ -546,6 +548,7 @@
             {
                 "allFormat": "regex wildcard",
                 "current": {
+                    "selected": true,
                     "text": "All",
                     "value": ".*"
                 },
@@ -556,29 +559,29 @@
                 "name": "PHP",
                 "options": [
                     {
+                        "selected": true,
                         "text": "All",
-                        "value": ".*",
-                        "selected": true
+                        "value": ".*"
                     },
                     {
+                        "selected": false,
                         "text": "5.5.21",
-                        "value": "5\\.5\\.21",
-                        "selected": false
+                        "value": "5\\.5\\.21"
                     },
                     {
+                        "selected": false,
                         "text": "5.6.5",
-                        "value": "5\\.6\\.5",
-                        "selected": false
+                        "value": "5\\.6\\.5"
                     },
                     {
+                        "selected": false,
                         "text": "7.0.4",
-                        "value": "7\\.0\\.4",
-                        "selected": false
+                        "value": "7\\.0\\.4"
                     },
                     {
+                        "selected": false,
                         "text": "7.0.5",
-                        "value": "7\\.0\\.5",
-                        "selected": false
+                        "value": "7\\.0\\.5"
                     }
                 ],
                 "query": "SHOW TAG VALUES FROM suites WITH KEY IN (php)",
@@ -590,6 +593,7 @@
             {
                 "allFormat": "regex wildcard",
                 "current": {
+                    "selected": true,
                     "text": "All",
                     "value": ".*"
                 },
@@ -600,19 +604,19 @@
                 "name": "atoum",
                 "options": [
                     {
+                        "selected": true,
                         "text": "All",
-                        "value": ".*",
-                        "selected": true
+                        "value": ".*"
                     },
                     {
+                        "selected": false,
                         "text": "2.6.1",
-                        "value": "2\\.6\\.1",
-                        "selected": false
+                        "value": "2\\.6\\.1"
                     },
                     {
+                        "selected": false,
                         "text": "dev-master",
-                        "value": "dev\\-master",
-                        "selected": false
+                        "value": "dev\\-master"
                     }
                 ],
                 "query": "SHOW TAG VALUES FROM suites WITH KEY IN (atoum)",
@@ -623,6 +627,7 @@
             {
                 "allFormat": "regex wildcard",
                 "current": {
+                    "selected": true,
                     "text": "All",
                     "value": ".*"
                 },
@@ -633,14 +638,14 @@
                 "name": "vendor",
                 "options": [
                     {
+                        "selected": true,
                         "text": "All",
-                        "value": ".*",
-                        "selected": true
+                        "value": ".*"
                     },
                     {
+                        "selected": false,
                         "text": "atoum",
-                        "value": "atoum",
-                        "selected": false
+                        "value": "atoum"
                     }
                 ],
                 "query": "SHOW TAG VALUES FROM suites WITH KEY IN (vendor)",
@@ -666,13 +671,53 @@
                         "selected": true
                     },
                     {
+                        "text": "84d284a1eeb2909880112d2a650b6b69",
+                        "value": "84d284a1eeb2909880112d2a650b6b69",
+                        "selected": false
+                    },
+                    {
+                        "text": "anon-84d284a1eeb2909880112d2a650b6b69",
+                        "value": "anon\\-84d284a1eeb2909880112d2a650b6b69",
+                        "selected": false
+                    },
+                    {
+                        "text": "async-generator",
+                        "value": "async\\-generator",
+                        "selected": false
+                    },
+                    {
+                        "text": "async-runtime",
+                        "value": "async\\-runtime",
+                        "selected": false
+                    },
+                    {
                         "text": "atoum",
                         "value": "atoum",
                         "selected": false
                     },
                     {
+                        "text": "b2b",
+                        "value": "b2b",
+                        "selected": false
+                    },
+                    {
+                        "text": "reports-extension",
+                        "value": "reports\\-extension",
+                        "selected": false
+                    },
+                    {
+                        "text": "serializer",
+                        "value": "serializer",
+                        "selected": false
+                    },
+                    {
                         "text": "telemetry",
                         "value": "telemetry",
+                        "selected": false
+                    },
+                    {
+                        "text": "test",
+                        "value": "test",
                         "selected": false
                     }
                 ],

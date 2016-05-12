@@ -78,4 +78,3 @@ There are also two routes to access the API documentation:
 
 * Suites: Labels on legends
 * Suites: Unit on "Number of tests"
-* Means: Unit on "Assertions"
