@@ -1,5 +1,5 @@
 {
-    "id": 1,
+    "id": 5,
     "title": "Suites",
     "originalTitle": "Suites",
     "tags": [
@@ -277,6 +277,7 @@
                     "aliasColors": {},
                     "bars": false,
                     "datasource": null,
+                    "decimals": 2,
                     "editable": true,
                     "error": false,
                     "fill": 1,
@@ -341,7 +342,7 @@
                                 }
                             ],
                             "measurement": "suites",
-                            "query": "SELECT sum(\"value\") FROM \"suites\" WHERE \"atoum\" =~ /$atoum$/ AND \"php\" =~ /$PHP$/ AND \"vendor\" =~ /$vendor$/ AND \"project\" =~ /$project$/ AND $timeFilter AND \"os\" =~ /$OS$/ AND \"arch\" =~ /$arch$/ GROUP BY time($interval), \"php\" fill(null)",
+                            "query": "SELECT sum(\"value\") FROM \"suites\" WHERE \"atoum\" =~ /$atoum$/ AND \"php\" =~ /$PHP$/ AND \"vendor\" =~ /$vendor$/ AND \"project\" =~ /$project$/ AND \"os\" =~ /$OS$/ AND \"arch\" =~ /$arch$/ AND $timeFilter GROUP BY time($interval), \"php\" fill(null)",
                             "refId": "A",
                             "resultFormat": "time_series",
                             "select": [
@@ -394,7 +395,8 @@
                                     "operator": "=~",
                                     "value": "/$arch$/"
                                 }
-                            ]
+                            ],
+                            "alias": "$tag_php"
                         }
                     ],
                     "timeFrom": null,
@@ -410,13 +412,13 @@
                     "y_formats": [
                         "short",
                         "short"
-                    ],
-                    "decimals":2
+                    ]
                 },
                 {
                     "aliasColors": {},
                     "bars": false,
                     "datasource": null,
+                    "decimals": 2,
                     "editable": true,
                     "error": false,
                     "fill": 1,
@@ -481,7 +483,7 @@
                                 }
                             ],
                             "measurement": "suites",
-                            "query": "SELECT sum(\"classes\") FROM \"suites\" WHERE \"atoum\" =~ /$atoum$/ AND \"php\" =~ /$PHP$/ AND \"vendor\" =~ /$vendor$/ AND \"project\" =~ /$project$/ AND $timeFilter AND \"os\" =~ /$OS$/ AND \"arch\" =~ /$arch$/ GROUP BY time($interval), \"php\" fill(null)",
+                            "query": "SELECT sum(\"classes\") FROM \"suites\" WHERE \"atoum\" =~ /$atoum$/ AND \"php\" =~ /$PHP$/ AND \"vendor\" =~ /$vendor$/ AND \"project\" =~ /$project$/ AND \"os\" =~ /$OS$/ AND \"arch\" =~ /$arch$/ AND $timeFilter GROUP BY time($interval), \"php\" fill(null)",
                             "refId": "A",
                             "resultFormat": "time_series",
                             "select": [
@@ -534,7 +536,8 @@
                                     "operator": "=~",
                                     "value": "/$arch$/"
                                 }
-                            ]
+                            ],
+                            "alias": "$tag_php"
                         }
                     ],
                     "timeFrom": null,
@@ -548,10 +551,9 @@
                     "x-axis": true,
                     "y-axis": true,
                     "y_formats": [
-                        "s",
+                        "short",
                         "short"
-                    ],
-                    "decimals":2
+                    ]
                 }
             ],
             "title": "New row"
@@ -565,6 +567,7 @@
                     "aliasColors": {},
                     "bars": false,
                     "datasource": null,
+                    "decimals": 2,
                     "editable": true,
                     "error": false,
                     "fill": 1,
@@ -629,7 +632,7 @@
                                 }
                             ],
                             "measurement": "suites",
-                            "query": "SELECT sum(\"methods\") FROM \"suites\" WHERE \"atoum\" =~ /$atoum$/ AND \"php\" =~ /$PHP$/ AND \"vendor\" =~ /$vendor$/ AND \"project\" =~ /$project$/ AND $timeFilter AND \"os\" =~ /$OS$/ AND \"arch\" =~ /$arch$/ GROUP BY time($interval), \"php\" fill(null)",
+                            "query": "SELECT sum(\"methods\") FROM \"suites\" WHERE \"atoum\" =~ /$atoum$/ AND \"php\" =~ /$PHP$/ AND \"vendor\" =~ /$vendor$/ AND \"project\" =~ /$project$/ AND \"os\" =~ /$OS$/ AND \"arch\" =~ /$arch$/ AND $timeFilter GROUP BY time($interval), \"php\" fill(null)",
                             "refId": "A",
                             "resultFormat": "time_series",
                             "select": [
@@ -682,7 +685,8 @@
                                     "operator": "=~",
                                     "value": "/$arch$/"
                                 }
-                            ]
+                            ],
+                            "alias": "$tag_php"
                         }
                     ],
                     "timeFrom": null,
@@ -698,13 +702,13 @@
                     "y_formats": [
                         "short",
                         "short"
-                    ],
-                    "decimals":2
+                    ]
                 },
                 {
                     "aliasColors": {},
                     "bars": false,
                     "datasource": null,
+                    "decimals": 2,
                     "editable": true,
                     "error": false,
                     "fill": 1,
@@ -769,7 +773,7 @@
                                 }
                             ],
                             "measurement": "suites",
-                            "query": "SELECT sum(\"assertions\") FROM \"suites\" WHERE \"atoum\" =~ /$atoum$/ AND \"php\" =~ /$PHP$/ AND \"vendor\" =~ /$vendor$/ AND \"project\" =~ /$project$/ AND $timeFilter AND \"os\" =~ /$OS$/ AND \"arch\" =~ /$arch$/ GROUP BY time($interval), \"php\" fill(null)",
+                            "query": "SELECT sum(\"assertions\") FROM \"suites\" WHERE \"atoum\" =~ /$atoum$/ AND \"php\" =~ /$PHP$/ AND \"vendor\" =~ /$vendor$/ AND \"project\" =~ /$project$/ AND \"os\" =~ /$OS$/ AND \"arch\" =~ /$arch$/ AND $timeFilter GROUP BY time($interval), \"php\" fill(null)",
                             "refId": "A",
                             "resultFormat": "time_series",
                             "select": [
@@ -822,7 +826,8 @@
                                     "operator": "=~",
                                     "value": "/$arch$/"
                                 }
-                            ]
+                            ],
+                            "alias": "$tag_php"
                         }
                     ],
                     "timeFrom": null,
@@ -838,8 +843,7 @@
                     "y_formats": [
                         "short",
                         "short"
-                    ],
-                    "decimals":2
+                    ]
                 }
             ],
             "title": "New row"
@@ -878,152 +882,337 @@
     "templating": {
         "list": [
             {
-                "type": "query",
+                "allFormat": "regex wildcard",
+                "current": {
+                    "text": "All",
+                    "value": ".*"
+                },
                 "datasource": null,
-                "refresh": true,
+                "includeAll": true,
+                "multi": true,
+                "multiFormat": "regex values",
                 "name": "OS",
                 "options": [
                     {
                         "text": "All",
                         "value": ".*",
                         "selected": true
+                    },
+                    {
+                        "text": "Darwin 15.4.0",
+                        "value": "Darwin\\ 15\\.4\\.0",
+                        "selected": false
+                    },
+                    {
+                        "text": "Linux 3.13.0-40-generic",
+                        "value": "Linux\\ 3\\.13\\.0\\-40\\-generic",
+                        "selected": false
+                    },
+                    {
+                        "text": "Linux 3.13.0-85-generic",
+                        "value": "Linux\\ 3\\.13\\.0\\-85\\-generic",
+                        "selected": false
+                    },
+                    {
+                        "text": "Linux 3.16.0-4-amd64",
+                        "value": "Linux\\ 3\\.16\\.0\\-4\\-amd64",
+                        "selected": false
+                    },
+                    {
+                        "text": "Linux 4.2.0-35-generic",
+                        "value": "Linux\\ 4\\.2\\.0\\-35\\-generic",
+                        "selected": false
+                    },
+                    {
+                        "text": "Linux 4.5.2-1-ARCH",
+                        "value": "Linux\\ 4\\.5\\.2\\-1\\-ARCH",
+                        "selected": false
+                    },
+                    {
+                        "text": "Windows NT 6.3",
+                        "value": "Windows\\ NT\\ 6\\.3",
+                        "selected": false
                     }
                 ],
-                "includeAll": true,
-                "allFormat": "regex wildcard",
-                "multi": true,
-                "multiFormat": "regex values",
                 "query": "SHOW TAG VALUES FROM suites WITH KEY IN (os)",
-                "current": {
-                    "selected": true,
-                    "text": "All",
-                    "value": ".*"
-                },
+                "refresh": true,
                 "regex": "",
+                "type": "query",
                 "useTags": false
             },
             {
-                "type": "query",
+                "allFormat": "regex wildcard",
+                "current": {
+                    "text": "All",
+                    "value": ".*"
+                },
                 "datasource": null,
-                "refresh": true,
+                "includeAll": true,
+                "multi": true,
+                "multiFormat": "regex values",
                 "name": "arch",
                 "options": [
                     {
                         "text": "All",
                         "value": ".*",
+                        "selected": true
+                    },
+                    {
+                        "text": "AMD64",
+                        "value": "AMD64",
+                        "selected": false
+                    },
+                    {
+                        "text": "x86_64",
+                        "value": "x86_64",
                         "selected": false
                     }
                 ],
-                "includeAll": true,
-                "allFormat": "regex wildcard",
-                "multi": true,
-                "multiFormat": "regex values",
                 "query": "SHOW TAG VALUES FROM suites WITH KEY IN (arch)",
-                "current": {
-                    "selected": true,
-                    "text": "All",
-                    "value": ".*"
-                },
+                "refresh": true,
                 "regex": "",
+                "type": "query",
                 "useTags": false
             },
             {
-                "type": "query",
+                "allFormat": "regex wildcard",
+                "current": {
+                    "text": "All",
+                    "value": ".*"
+                },
                 "datasource": null,
-                "refresh": true,
+                "includeAll": true,
+                "multi": true,
+                "multiFormat": "regex values",
                 "name": "PHP",
                 "options": [
                     {
-                        "selected": true,
                         "text": "All",
-                        "value": ".*"
+                        "value": ".*",
+                        "selected": true
+                    },
+                    {
+                        "text": "5.5.13",
+                        "value": "5\\.5\\.13",
+                        "selected": false
+                    },
+                    {
+                        "text": "5.5.21",
+                        "value": "5\\.5\\.21",
+                        "selected": false
+                    },
+                    {
+                        "text": "5.6.11",
+                        "value": "5\\.6\\.11",
+                        "selected": false
+                    },
+                    {
+                        "text": "5.6.21",
+                        "value": "5\\.6\\.21",
+                        "selected": false
+                    },
+                    {
+                        "text": "5.6.4",
+                        "value": "5\\.6\\.4",
+                        "selected": false
+                    },
+                    {
+                        "text": "5.6.5",
+                        "value": "5\\.6\\.5",
+                        "selected": false
+                    },
+                    {
+                        "text": "7.0.4",
+                        "value": "7\\.0\\.4",
+                        "selected": false
+                    },
+                    {
+                        "text": "7.0.5",
+                        "value": "7\\.0\\.5",
+                        "selected": false
+                    },
+                    {
+                        "text": "7.0.6",
+                        "value": "7\\.0\\.6",
+                        "selected": false
                     }
                 ],
-                "includeAll": true,
-                "allFormat": "regex wildcard",
-                "multi": true,
-                "multiFormat": "regex values",
                 "query": "SHOW TAG VALUES FROM suites WITH KEY IN (php)",
-                "current": {
-                    "selected": true,
-                    "text": "All",
-                    "value": ".*"
-                },
+                "refresh": true,
                 "regex": "",
+                "type": "query",
                 "useTags": false
             },
             {
-                "type": "query",
+                "allFormat": "regex wildcard",
+                "current": {
+                    "text": "All",
+                    "value": ".*"
+                },
                 "datasource": null,
-                "refresh": true,
+                "includeAll": true,
+                "multi": true,
+                "multiFormat": "regex values",
                 "name": "atoum",
                 "options": [
                     {
-                        "selected": true,
                         "text": "All",
-                        "value": ".*"
+                        "value": ".*",
+                        "selected": true
+                    },
+                    {
+                        "text": "2.5.1",
+                        "value": "2\\.5\\.1",
+                        "selected": false
+                    },
+                    {
+                        "text": "2.6.1",
+                        "value": "2\\.6\\.1",
+                        "selected": false
+                    },
+                    {
+                        "text": "dev-master",
+                        "value": "dev\\-master",
+                        "selected": false
                     }
                 ],
-                "includeAll": true,
-                "allFormat": "regex wildcard",
-                "multi": true,
-                "multiFormat": "regex values",
                 "query": "SHOW TAG VALUES FROM suites WITH KEY IN (atoum)",
-                "current": {
-                    "selected": true,
-                    "text": "All",
-                    "value": ".*"
-                },
+                "refresh": true,
                 "regex": "",
+                "type": "query",
                 "useTags": false
             },
             {
-                "type": "query",
+                "allFormat": "regex wildcard",
+                "current": {
+                    "text": "All",
+                    "value": ".*"
+                },
                 "datasource": null,
-                "refresh": true,
+                "includeAll": true,
+                "multi": true,
+                "multiFormat": "regex values",
                 "name": "vendor",
                 "options": [
                     {
-                        "selected": true,
                         "text": "All",
-                        "value": ".*"
+                        "value": ".*",
+                        "selected": true
+                    },
+                    {
+                        "text": "anon",
+                        "value": "anon",
+                        "selected": false
+                    },
+                    {
+                        "text": "atoum",
+                        "value": "atoum",
+                        "selected": false
+                    },
+                    {
+                        "text": "bepark",
+                        "value": "bepark",
+                        "selected": false
+                    },
+                    {
+                        "text": "blackprism",
+                        "value": "blackprism",
+                        "selected": false
+                    },
+                    {
+                        "text": "hoa",
+                        "value": "hoa",
+                        "selected": false
+                    },
+                    {
+                        "text": "jubianchi",
+                        "value": "jubianchi",
+                        "selected": false
+                    },
+                    {
+                        "text": "pmsipilot",
+                        "value": "pmsipilot",
+                        "selected": false
                     }
                 ],
-                "includeAll": true,
-                "allFormat": "regex wildcard",
-                "multi": true,
-                "multiFormat": "regex values",
                 "query": "SHOW TAG VALUES FROM suites WITH KEY IN (vendor)",
-                "current": {
-                    "selected": true,
-                    "text": "All",
-                    "value": ".*"
-                },
+                "refresh": true,
                 "regex": "",
+                "type": "query",
                 "useTags": false
             },
             {
-                "type": "query",
+                "allFormat": "regex wildcard",
+                "current": {
+                    "text": "All",
+                    "value": ".*"
+                },
                 "datasource": null,
-                "refresh": true,
+                "includeAll": true,
+                "multi": true,
+                "multiFormat": "regex values",
                 "name": "project",
                 "options": [
                     {
                         "text": "All",
                         "value": ".*",
                         "selected": true
+                    },
+                    {
+                        "text": "84d284a1eeb2909880112d2a650b6b69",
+                        "value": "84d284a1eeb2909880112d2a650b6b69",
+                        "selected": false
+                    },
+                    {
+                        "text": "anon-84d284a1eeb2909880112d2a650b6b69",
+                        "value": "anon\\-84d284a1eeb2909880112d2a650b6b69",
+                        "selected": false
+                    },
+                    {
+                        "text": "async-generator",
+                        "value": "async\\-generator",
+                        "selected": false
+                    },
+                    {
+                        "text": "async-runtime",
+                        "value": "async\\-runtime",
+                        "selected": false
+                    },
+                    {
+                        "text": "atoum",
+                        "value": "atoum",
+                        "selected": false
+                    },
+                    {
+                        "text": "b2b",
+                        "value": "b2b",
+                        "selected": false
+                    },
+                    {
+                        "text": "reports-extension",
+                        "value": "reports\\-extension",
+                        "selected": false
+                    },
+                    {
+                        "text": "serializer",
+                        "value": "serializer",
+                        "selected": false
+                    },
+                    {
+                        "text": "telemetry",
+                        "value": "telemetry",
+                        "selected": false
+                    },
+                    {
+                        "text": "test",
+                        "value": "test",
+                        "selected": false
                     }
                 ],
-                "includeAll": true,
-                "allFormat": "regex wildcard",
-                "multi": true,
-                "multiFormat": "regex values",
                 "query": "SHOW TAG VALUES FROM suites WITH KEY IN (project) WHERE vendor != 'anon'",
-                "current": {
-                    "text": "All",
-                    "value": ".*"
-                },
+                "refresh": true,
                 "regex": "",
+                "type": "query",
                 "useTags": false
             }
         ]
@@ -1031,21 +1220,21 @@
     "annotations": {
         "list": [
             {
-                "name": "releases",
                 "datasource": "atoum",
-                "showLine": true,
-                "iconColor": "#C0C6BE",
-                "lineColor": "rgba(255, 96, 96, 0.592157)",
-                "iconSize": 13,
                 "enable": true,
+                "iconColor": "#C0C6BE",
+                "iconSize": 13,
+                "lineColor": "rgba(255, 96, 96, 0.592157)",
+                "name": "releases",
                 "query": "SELECT time, atoum, value FROM releases GROUP BY major,minor,patch ORDER by time DESC LIMIT 1",
+                "showLine": true,
                 "tagsColumn": "atoum"
             }
         ]
     },
     "refresh": "30s",
     "schemaVersion": 8,
-    "version": 11,
+    "version": 7,
     "links": [
         {
             "asDropdown": true,

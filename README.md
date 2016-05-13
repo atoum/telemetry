@@ -73,8 +73,3 @@ There are also two routes to access the API documentation:
 
 * `GET /docs` to get the JSON definition of the API
 * `GET /swagger` to reach the Swagger UI
-
-## TODO
-
-* Suites: Labels on legends
-* Suites: Unit on "Number of tests"
