@@ -154,7 +154,7 @@ class telemetry
 
 		$constraint = new Constraints\Collection([
 			'php' => new Constraints\Required([new Constraints\NotBlank(), new Constraints\Regex('/\d+(?:\.\d+){0,2}/')]),
-			'atoum' => new Constraints\Required([new Constraints\NotBlank(), new Constraints\Regex('/^\d+(?:\.\d+){0,2}$/')]),
+			'atoum' => new Constraints\Required([new Constraints\NotBlank(), new Constraints\Regex('/^(?:\d+(?:\.(?:\d+|[xX]$)){0,2}|dev-.*?)$/')]),
 			'os' => new Constraints\NotBlank(),
 			'arch' => new Constraints\NotBlank(),
 			'environment' => new Constraints\Optional(['constraints' => [new Constraints\NotBlank()]]),
