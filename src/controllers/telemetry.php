@@ -212,6 +212,6 @@ class telemetry
 			throw new exceptions\validation($errors);
 		}
 
-		return new JsonResponse($this->broker->enqueue(report::class, ['report' => $report]));
+		return new JsonResponse($this->broker->enqueue(report::class, ['report' => $report, 'timestamp' => time()]));
 	}
 }

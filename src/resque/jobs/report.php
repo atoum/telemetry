@@ -26,6 +26,7 @@ class report
 	public function perform()
 	{
 		$report = $this->args['report'];
+		$timestamp = $this->args['timestamp'] ?? time();
 
 		preg_match('/(?:PHP )?(\d+\.\d+\.\d+)/', $report['php'], $php);
 
@@ -53,7 +54,7 @@ class report
 					'memory' => $report['metrics']['memory'],
 					'duration' => floatval(sprintf('%.14f', $report['metrics']['duration'])),
 				],
-				time()
+				$timestamp
 			),
 			new Point(
 				'assertions',
@@ -63,7 +64,7 @@ class report
 					'passed' => $report['metrics']['assertions']['passed'],
 					'failed' => $report['metrics']['assertions']['failed']
 				],
-				time()
+				$timestamp
 			),
 			new Point(
 				'methods',
@@ -77,7 +78,7 @@ class report
 					'errored' => $report['metrics']['methods']['errored'],
 					'exception' => $report['metrics']['methods']['exception'],
 				],
-				time()
+				$timestamp
 			)
 		];
 
@@ -95,7 +96,7 @@ class report
 				$values['paths'] = floatval(sprintf('%.14f', $report['metrics']['coverage']['paths']));
 			}
 
-			$points[] = new Point('coverage', floatval(sprintf('%.14f', $report['metrics']['coverage']['lines'])), $tags, $values, time());
+			$points[] = new Point('coverage', floatval(sprintf('%.14f', $report['metrics']['coverage']['lines'])), $tags, $values, $timestamp);
 		}
 
 		$this->database->writePoints($points, Database::PRECISION_SECONDS);

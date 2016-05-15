@@ -10,4 +10,9 @@ class broker extends resque
 	{
 		return \Resque::enqueue($this->queue, $class, $args, $trackStatus);
 	}
+
+	public function redis()
+	{
+		return \Resque::redis();
+	}
 }
