@@ -9,6 +9,7 @@ use atoum\telemetry\providers\influxdb;
 use atoum\telemetry\providers\log;
 use atoum\telemetry\providers\resque;
 use JDesrosiers\Silex\Provider\SwaggerServiceProvider;
+use Knp\Provider\ConsoleServiceProvider;
 use Silex;
 use Silex\Provider\ValidatorServiceProvider;
 use SwaggerUI\Silex\Provider\SwaggerUIServiceProvider;
@@ -49,6 +50,7 @@ class application extends Silex\Application
 			->register(new log())
 			->register(new influxdb())
 			->register(new resque())
+			->register(new ConsoleServiceProvider())
 		;
 
 		parent::boot();

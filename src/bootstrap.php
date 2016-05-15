@@ -11,6 +11,10 @@ $app['auth_token'] = getenv('ATOUM_TELEMETRY_AUTH_TOKEN');
 $app['monolog.name'] = 'atoum-telemetry';
 $app['monolog.logfile'] = 'php://stdout';
 
+$app['console.name'] = $app['monolog.name'];
+$app['console.version'] = '1.0.0';
+$app['console.project_directory'] = __DIR__;
+
 $app['influxdb.host'] = getenv('ATOUM_TELEMETRY_INFLUXDB_HOST') ?: null;
 $app['influxdb.port'] = getenv('ATOUM_TELEMETRY_INFLUXDB_PORT') ?: null;
 $app['influxdb.database'] = getenv('ATOUM_TELEMETRY_INFLUXDB_DATABASE') ?: null;

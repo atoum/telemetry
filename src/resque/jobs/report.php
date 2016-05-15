@@ -34,14 +34,10 @@ class report
 			'atoum' => $report['atoum'],
 			'os' =>  $report['os'],
 			'arch' =>  $report['arch'],
+			'environment' => $report['environment'] ?? 'unknown',
 			'vendor' => $report['vendor'],
 			'project' => $report['project']
 		];
-
-		if (isset($report['environment']) === true)
-		{
-			$tags['environment'] = $report['environment'];
-		}
 
 		$points = [
 			new Point(
@@ -54,8 +50,8 @@ class report
 					'assertions' => $report['metrics']['assertions']['total'],
 					'exceptions' => $report['metrics']['exceptions'],
 					'errors' => $report['metrics']['errors'],
-					'memory' => (float) $report['metrics']['memory'],
-					'duration' => (float) $report['metrics']['duration'],
+					'memory' => $report['metrics']['memory'],
+					'duration' => floatval(sprintf('%.14f', $report['metrics']['duration'])),
 				],
 				time()
 			),
@@ -91,15 +87,15 @@ class report
 
 			if (isset($report['metrics']['coverage']['branches']) === true)
 			{
-				$values['branches'] = (float) $report['metrics']['coverage']['branches'];
+				$values['branches'] = floatval(sprintf('%.14f', $report['metrics']['coverage']['branches']));
 			}
 
 			if (isset($report['metrics']['coverage']['paths']) === true)
 			{
-				$values['paths'] = (float) $report['metrics']['coverage']['paths'];
+				$values['paths'] = floatval(sprintf('%.14f', $report['metrics']['coverage']['paths']));
 			}
 
-			$points[] = new Point('coverage', (float) $report['metrics']['coverage']['lines'], $tags, $values, time());
+			$points[] = new Point('coverage', floatval(sprintf('%.14f', $report['metrics']['coverage']['lines'])), $tags, $values, time());
 		}
 
 		$this->database->writePoints($points, Database::PRECISION_SECONDS);

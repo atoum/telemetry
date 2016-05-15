@@ -73,6 +73,7 @@ class report extends atoum\test
 									'atoum' => $report['atoum'],
 									'os' =>  $report['os'],
 									'arch' =>  $report['arch'],
+									'environment' =>  'unknown',
 									'vendor' => $report['vendor'],
 									'project' => $report['project']
 								],
@@ -83,7 +84,7 @@ class report extends atoum\test
 									'exceptions' => $report['metrics']['exceptions'],
 									'errors' => $report['metrics']['errors'],
 									'memory' => $report['metrics']['memory'],
-									'duration' => $report['metrics']['duration'],
+									'duration' => floatval(sprintf('%.14f', $report['metrics']['duration'])),
 								],
 								time()
 							),
@@ -95,6 +96,7 @@ class report extends atoum\test
 									'atoum' => $report['atoum'],
 									'os' =>  $report['os'],
 									'arch' =>  $report['arch'],
+									'environment' =>  'unknown',
 									'vendor' => $report['vendor'],
 									'project' => $report['project']
 								],
@@ -112,6 +114,7 @@ class report extends atoum\test
 									'atoum' => $report['atoum'],
 									'os' =>  $report['os'],
 									'arch' =>  $report['arch'],
+									'environment' =>  'unknown',
 									'vendor' => $report['vendor'],
 									'project' => $report['project']
 								],

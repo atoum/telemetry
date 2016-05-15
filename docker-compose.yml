@@ -41,6 +41,7 @@ influxdb:
     volumes:
         - ./data/influxdb/db:/data/db
         - ./data/influxdb/meta:/data/meta
+        - ./data/influxdb/backup:/data/backup
     ports:
         - 8083:8083
         - 8086:8086
