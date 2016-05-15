@@ -140,6 +140,16 @@ class apply extends Command
 	{
 		$output->writeln('  > Patching the <info>' . $measurement . '</info> measurement');
 
+		$result = $this->database->query('SHOW MEASUREMENTS');
+		$measurements = array_map(function($point) { return $point['name']; }, $result->getPoints());
+
+		if (in_array($measurement, $measurements) === false)
+		{
+			$output->writeln('<comment>    > Measurement ' . $measurement . ' does not exist</comment>');
+
+			return;
+		}
+
 		$result = $this->database->query('SELECT * FROM ' . $measurement);
 		$points = array_map($map, $result->getPoints());
 
