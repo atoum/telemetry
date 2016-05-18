@@ -1,0 +1,543 @@
+{
+    "id": 9,
+    "title": "Environments",
+    "originalTitle": "Environments",
+    "tags": [
+        "atoum"
+    ],
+    "style": "dark",
+    "timezone": "browser",
+    "editable": true,
+    "hideControls": true,
+    "sharedCrosshair": true,
+    "rows": [
+        {
+            "collapse": false,
+            "editable": true,
+            "height": "500px",
+            "panels": [
+                {
+                    "aliasColors": {},
+                    "cacheTimeout": null,
+                    "datasource": null,
+                    "editable": true,
+                    "error": false,
+                    "fontSize": "80%",
+                    "format": "short",
+                    "id": 1,
+                    "interval": null,
+                    "isNew": true,
+                    "legend": {
+                        "show": true,
+                        "values": true
+                    },
+                    "legendType": "Right side",
+                    "links": [],
+                    "maxDataPoints": 3,
+                    "nullPointMode": "connected",
+                    "pieType": "donut",
+                    "span": 6,
+                    "strokeWidth": 1,
+                    "targets": [
+                        {
+                            "alias": "$tag_php",
+                            "dsType": "influxdb",
+                            "groupBy": [
+                                {
+                                    "params": [
+                                        "$interval"
+                                    ],
+                                    "type": "time"
+                                },
+                                {
+                                    "params": [
+                                        "php"
+                                    ],
+                                    "type": "tag"
+                                },
+                                {
+                                    "params": [
+                                        "null"
+                                    ],
+                                    "type": "fill"
+                                }
+                            ],
+                            "measurement": "suites",
+                            "policy": "default",
+                            "query": "SELECT sum(\"value\") FROM \"suites\" WHERE $timeFilter GROUP BY \"php\" fill(null)",
+                            "rawQuery": true,
+                            "refId": "A",
+                            "resultFormat": "time_series",
+                            "select": [
+                                [
+                                    {
+                                        "params": [
+                                            "value"
+                                        ],
+                                        "type": "field"
+                                    },
+                                    {
+                                        "params": [],
+                                        "type": "sum"
+                                    }
+                                ]
+                            ],
+                            "tags": []
+                        }
+                    ],
+                    "title": "PHP versions breakdown",
+                    "type": "grafana-piechart-panel",
+                    "valueName": "current"
+                },
+                {
+                    "aliasColors": {},
+                    "cacheTimeout": null,
+                    "datasource": null,
+                    "editable": true,
+                    "error": false,
+                    "fontSize": "80%",
+                    "format": "short",
+                    "id": 3,
+                    "interval": null,
+                    "isNew": true,
+                    "legend": {
+                        "show": true,
+                        "values": true
+                    },
+                    "legendType": "Right side",
+                    "links": [],
+                    "maxDataPoints": 3,
+                    "nullPointMode": "connected",
+                    "pieType": "donut",
+                    "span": 6,
+                    "strokeWidth": 1,
+                    "targets": [
+                        {
+                            "alias": "$tag_atoum",
+                            "dsType": "influxdb",
+                            "groupBy": [
+                                {
+                                    "params": [
+                                        "$interval"
+                                    ],
+                                    "type": "time"
+                                },
+                                {
+                                    "params": [
+                                        "php"
+                                    ],
+                                    "type": "tag"
+                                },
+                                {
+                                    "params": [
+                                        "null"
+                                    ],
+                                    "type": "fill"
+                                }
+                            ],
+                            "measurement": "suites",
+                            "policy": "default",
+                            "query": "SELECT sum(\"value\") FROM \"suites\" WHERE $timeFilter GROUP BY \"atoum\" fill(null)",
+                            "rawQuery": true,
+                            "refId": "A",
+                            "resultFormat": "time_series",
+                            "select": [
+                                [
+                                    {
+                                        "params": [
+                                            "value"
+                                        ],
+                                        "type": "field"
+                                    },
+                                    {
+                                        "params": [],
+                                        "type": "sum"
+                                    }
+                                ]
+                            ],
+                            "tags": []
+                        }
+                    ],
+                    "title": "atoum versions breakdown",
+                    "type": "grafana-piechart-panel",
+                    "valueName": "current"
+                }
+            ],
+            "title": "Row"
+        },
+        {
+            "collapse": false,
+            "editable": true,
+            "height": "500px",
+            "panels": [
+                {
+                    "aliasColors": {},
+                    "cacheTimeout": null,
+                    "datasource": null,
+                    "editable": true,
+                    "error": false,
+                    "fontSize": "80%",
+                    "format": "short",
+                    "id": 2,
+                    "interval": null,
+                    "isNew": true,
+                    "legend": {
+                        "show": true,
+                        "values": true
+                    },
+                    "legendType": "Right side",
+                    "links": [],
+                    "maxDataPoints": 3,
+                    "nullPointMode": "connected",
+                    "pieType": "donut",
+                    "span": 6,
+                    "strokeWidth": 1,
+                    "targets": [
+                        {
+                            "alias": "$tag_environment",
+                            "dsType": "influxdb",
+                            "groupBy": [
+                                {
+                                    "params": [
+                                        "$interval"
+                                    ],
+                                    "type": "time"
+                                },
+                                {
+                                    "params": [
+                                        "php"
+                                    ],
+                                    "type": "tag"
+                                },
+                                {
+                                    "params": [
+                                        "null"
+                                    ],
+                                    "type": "fill"
+                                }
+                            ],
+                            "measurement": "suites",
+                            "policy": "default",
+                            "query": "SELECT sum(\"value\") FROM \"suites\" WHERE $timeFilter AND environment =~ // GROUP BY \"environment\" fill(null)",
+                            "rawQuery": true,
+                            "refId": "A",
+                            "resultFormat": "time_series",
+                            "select": [
+                                [
+                                    {
+                                        "params": [
+                                            "value"
+                                        ],
+                                        "type": "field"
+                                    },
+                                    {
+                                        "params": [],
+                                        "type": "sum"
+                                    }
+                                ]
+                            ],
+                            "tags": []
+                        }
+                    ],
+                    "title": "Environments breakdown",
+                    "type": "grafana-piechart-panel",
+                    "valueName": "current"
+                },
+                {
+                    "aliasColors": {},
+                    "cacheTimeout": null,
+                    "datasource": null,
+                    "editable": true,
+                    "error": false,
+                    "fontSize": "80%",
+                    "format": "short",
+                    "id": 4,
+                    "interval": null,
+                    "isNew": true,
+                    "legend": {
+                        "show": true,
+                        "values": true
+                    },
+                    "legendType": "Right side",
+                    "links": [],
+                    "maxDataPoints": 3,
+                    "nullPointMode": "connected",
+                    "pieType": "donut",
+                    "span": 6,
+                    "strokeWidth": 1,
+                    "targets": [
+                        {
+                            "alias": "$tag_os",
+                            "dsType": "influxdb",
+                            "groupBy": [
+                                {
+                                    "params": [
+                                        "$interval"
+                                    ],
+                                    "type": "time"
+                                },
+                                {
+                                    "params": [
+                                        "php"
+                                    ],
+                                    "type": "tag"
+                                },
+                                {
+                                    "params": [
+                                        "null"
+                                    ],
+                                    "type": "fill"
+                                }
+                            ],
+                            "measurement": "suites",
+                            "policy": "default",
+                            "query": "SELECT sum(\"value\") FROM \"suites\" WHERE $timeFilter GROUP BY \"os\" fill(null)",
+                            "rawQuery": true,
+                            "refId": "A",
+                            "resultFormat": "time_series",
+                            "select": [
+                                [
+                                    {
+                                        "params": [
+                                            "value"
+                                        ],
+                                        "type": "field"
+                                    },
+                                    {
+                                        "params": [],
+                                        "type": "sum"
+                                    }
+                                ]
+                            ],
+                            "tags": []
+                        }
+                    ],
+                    "title": "OS breakdown",
+                    "type": "grafana-piechart-panel",
+                    "valueName": "current"
+                }
+            ],
+            "title": "New row"
+        }
+    ],
+    "time": {
+        "from": "now-6h",
+        "to": "now"
+    },
+    "timepicker": {
+        "refresh_intervals": [
+            "5s",
+            "10s",
+            "30s",
+            "1m",
+            "5m",
+            "15m",
+            "30m",
+            "1h",
+            "2h",
+            "1d"
+        ],
+        "time_options": [
+            "5m",
+            "15m",
+            "1h",
+            "6h",
+            "12h",
+            "24h",
+            "2d",
+            "7d",
+            "30d"
+        ]
+    },
+    "templating": {
+        "list": [
+            {
+                "current": {
+                    "tags": [],
+                    "text": "All",
+                    "value": [
+                        "$__all"
+                    ]
+                },
+                "datasource": null,
+                "hide": 0,
+                "includeAll": true,
+                "multi": true,
+                "name": "vendor",
+                "options": [
+                    {
+                        "text": "All",
+                        "value": "$__all",
+                        "selected": true
+                    },
+                    {
+                        "text": "anon",
+                        "value": "anon",
+                        "selected": false
+                    },
+                    {
+                        "text": "atoum",
+                        "value": "atoum",
+                        "selected": false
+                    },
+                    {
+                        "text": "bepark",
+                        "value": "bepark",
+                        "selected": false
+                    },
+                    {
+                        "text": "blackprism",
+                        "value": "blackprism",
+                        "selected": false
+                    },
+                    {
+                        "text": "booktube.io",
+                        "value": "booktube.io",
+                        "selected": false
+                    },
+                    {
+                        "text": "hoa",
+                        "value": "hoa",
+                        "selected": false
+                    },
+                    {
+                        "text": "jubianchi",
+                        "value": "jubianchi",
+                        "selected": false
+                    },
+                    {
+                        "text": "m6web",
+                        "value": "m6web",
+                        "selected": false
+                    },
+                    {
+                        "text": "pmsipilot",
+                        "value": "pmsipilot",
+                        "selected": false
+                    },
+                    {
+                        "text": "replay",
+                        "value": "replay",
+                        "selected": false
+                    }
+                ],
+                "query": "SHOW TAG VALUES FROM suites WITH KEY IN (vendor)",
+                "refresh": 1,
+                "type": "query"
+            },
+            {
+                "current": {
+                    "tags": [],
+                    "text": "All",
+                    "value": [
+                        "$__all"
+                    ]
+                },
+                "datasource": null,
+                "hide": 0,
+                "includeAll": true,
+                "multi": true,
+                "name": "project",
+                "options": [
+                    {
+                        "selected": true,
+                        "text": "All",
+                        "value": "$__all"
+                    },
+                    {
+                        "selected": false,
+                        "text": "84d284a1eeb2909880112d2a650b6b69",
+                        "value": "84d284a1eeb2909880112d2a650b6b69"
+                    },
+                    {
+                        "selected": false,
+                        "text": "async-generator",
+                        "value": "async-generator"
+                    },
+                    {
+                        "selected": false,
+                        "text": "async-runtime",
+                        "value": "async-runtime"
+                    },
+                    {
+                        "selected": false,
+                        "text": "atoum",
+                        "value": "atoum"
+                    },
+                    {
+                        "selected": false,
+                        "text": "atoum-bundle",
+                        "value": "atoum-bundle"
+                    },
+                    {
+                        "selected": false,
+                        "text": "b2b",
+                        "value": "b2b"
+                    },
+                    {
+                        "selected": false,
+                        "text": "booktube.io",
+                        "value": "booktube.io"
+                    },
+                    {
+                        "selected": false,
+                        "text": "reports-extension",
+                        "value": "reports-extension"
+                    },
+                    {
+                        "selected": false,
+                        "text": "serializer",
+                        "value": "serializer"
+                    },
+                    {
+                        "selected": false,
+                        "text": "service-6play-elasticsearch",
+                        "value": "service-6play-elasticsearch"
+                    },
+                    {
+                        "selected": false,
+                        "text": "service-6play-middleware",
+                        "value": "service-6play-middleware"
+                    },
+                    {
+                        "selected": false,
+                        "text": "service-middleware",
+                        "value": "service-middleware"
+                    },
+                    {
+                        "selected": false,
+                        "text": "telemetry",
+                        "value": "telemetry"
+                    },
+                    {
+                        "selected": false,
+                        "text": "test",
+                        "value": "test"
+                    }
+                ],
+                "query": "SHOW TAG VALUES FROM suites WITH KEY IN (project) WHERE vendor != 'anon' AND project !~ /^anon/",
+                "refresh": 0,
+                "regex": "",
+                "type": "query"
+            }
+        ]
+    },
+    "annotations": {
+        "list": []
+    },
+    "schemaVersion": 12,
+    "version": 11,
+    "links": [
+        {
+            "asDropdown": true,
+            "icon": "external link",
+            "includeVars": true,
+            "keepTime": true,
+            "tags": [
+                "atoum"
+            ],
+            "title": "atoum",
+            "type": "dashboards"
+        }
+    ]
+}
