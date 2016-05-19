@@ -352,6 +352,7 @@
     "templating": {
         "list": [
             {
+                "allValue": ".*",
                 "current": {
                     "tags": [],
                     "text": "All",
@@ -426,6 +427,7 @@
                 "type": "query"
             },
             {
+                "allValue": ".*",
                 "current": {
                     "tags": [],
                     "text": "All",
